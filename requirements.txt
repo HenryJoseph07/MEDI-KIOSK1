@@ -4,3 +4,4 @@ gunicorn
 google-genai==2.19.0
 Pillow
 PyMuPDF
+pdf2image==1.17.0
