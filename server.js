@@ -25,6 +25,7 @@ const authRoutes = require("./src/routes/authRoutes");
 const patientRoutes = require("./src/routes/patientRoutes");
 const documentRoutes = require("./src/routes/documentRoutes");
 const summaryRoutes = require("./src/routes/summaryRoutes");
+const doctorRoutes = require("./src/routes/doctorRoutes");
 
 
 // Authentication
@@ -38,6 +39,7 @@ app.use("/api/documents", documentRoutes);
 
 // Health summaries
 app.use("/api/summaries", summaryRoutes);
+app.use("/api/doctors", doctorRoutes);
 
 
 // ===============================

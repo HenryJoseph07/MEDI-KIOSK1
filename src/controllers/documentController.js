@@ -2,13 +2,15 @@ const pool = require("../config/db");
 const fs = require("fs");
 const { processDocument } = require("../services/aiService");
 
+const generateDocumentId = () => `DOC${Math.floor(10000 + Math.random() * 90000)}`;
+
 // ===============================
 // UPLOAD DOCUMENT
 // ===============================
 const uploadDocument = async (req, res) => {
     try {
         // Only authenticated patient can reach here
-        const userId = req.user.userId;
+        const requestedPatientId = req.params.patientId;
 
         if (!req.file) {
             return res.status(400).json({
@@ -19,7 +21,8 @@ const uploadDocument = async (req, res) => {
 
         const {
             documentType,
-            documentName
+            documentName,
+            description
         } = req.body;
 
         // Allowed document types
@@ -28,7 +31,11 @@ const uploadDocument = async (req, res) => {
             "lab_report",
             "health_report",
             "medical_report",
-            "other"
+            "other",
+            "Prescription",
+            "Lab Report",
+            "Health Report",
+            "Medical Report"
         ];
 
         if (documentType && !allowedTypes.includes(documentType)) {
@@ -42,8 +49,10 @@ const uploadDocument = async (req, res) => {
         }
 
         const patientResult = await pool.query(
-            "SELECT id FROM patients WHERE user_id = $1",
-            [userId]
+            `SELECT p.id, u.id AS user_id, u.user_id AS public_user_id
+             FROM patients p JOIN users u ON u.id = p.user_id
+             WHERE u.user_id = $1 OR u.id::text = $1`,
+            [requestedPatientId || req.user.publicUserId || req.user.userId]
         );
 
         if (patientResult.rows.length === 0) {
@@ -54,18 +63,25 @@ const uploadDocument = async (req, res) => {
             });
         }
 
+        if (req.user.role === "patient" && patientResult.rows[0].user_id !== req.user.userId) {
+            fs.unlink(req.file.path, () => {});
+            return res.status(403).json({ success: false, message: "You can only upload your own documents" });
+        }
+
         const result = await pool.query(
             `INSERT INTO documents
             (
                 patient_id,
+                document_id,
                 original_file_name,
                 document_type,
                 file_path,
                 mime_type,
+                description,
                 processing_status
             )
-            VALUES ($1, $2, $3, $4, $5, 'processing')
-            RETURNING id,
+            VALUES ($1, $2, $3, $4, $5, $6, $7, 'processing')
+            RETURNING id, document_id,
                       patient_id,
                       original_file_name,
                       document_type,
@@ -73,10 +89,12 @@ const uploadDocument = async (req, res) => {
                       uploaded_at`,
             [
                 patientResult.rows[0].id,
+                generateDocumentId(),
                 documentName || req.file.originalname,
                 documentType || "other",
                 req.file.path,
-                req.file.mimetype
+                req.file.mimetype,
+                description || null
             ]
         );
 
@@ -100,12 +118,15 @@ const uploadDocument = async (req, res) => {
         const summaryText = aiResult.summary || aiResult.raw_text_preview || "AI summary generated";
         await pool.query(
             `INSERT INTO medical_summaries
-                (patient_id, conditions, medications, lab_findings, summary)
-             VALUES ($1, $2::jsonb, $3::jsonb, $4::jsonb, $5)
+                     (patient_id, conditions, medications, lab_findings, recent_findings, overview, recommendations, summary)
+                 VALUES ($1, $2::jsonb, $3::jsonb, $4::jsonb, $5::jsonb, $6, $7::jsonb, $6)
              ON CONFLICT (patient_id) DO UPDATE SET
                 conditions = EXCLUDED.conditions,
                 medications = EXCLUDED.medications,
                 lab_findings = EXCLUDED.lab_findings,
+                recent_findings = EXCLUDED.recent_findings,
+                overview = EXCLUDED.overview,
+                recommendations = EXCLUDED.recommendations,
                 summary = EXCLUDED.summary,
                 updated_at = CURRENT_TIMESTAMP`,
             [
@@ -113,8 +134,16 @@ const uploadDocument = async (req, res) => {
                 JSON.stringify(aiResult.diagnoses || aiResult.conditions || []),
                 JSON.stringify(aiResult.medicines || aiResult.medications || []),
                 JSON.stringify(aiResult.lab_values || aiResult.lab_findings || []),
-                summaryText
+                JSON.stringify(aiResult.recent_findings || aiResult.lab_values || []),
+                summaryText,
+                JSON.stringify(aiResult.recommendations || [])
             ]
+        );
+
+        await pool.query(
+            `INSERT INTO medical_timeline (patient_id, type, title, description, document_id)
+             VALUES ($1, 'document', $2, $3, $4)`,
+            [patientResult.rows[0].id, documentType || "Medical Document", description || summaryText, document.id]
         );
 
         await pool.query(
@@ -126,12 +155,12 @@ const uploadDocument = async (req, res) => {
             success: true,
             message: "Document uploaded successfully",
             document: {
-                id: document.id,
-                patientId: document.patient_id,
-                name: document.original_file_name,
-                type: document.document_type,
+                documentId: document.document_id,
+                patientId: patientResult.rows[0].public_user_id,
+                fileName: document.original_file_name,
+                documentType: document.document_type,
                 status: "completed",
-                createdAt: document.uploaded_at,
+                uploadedAt: document.uploaded_at,
                 ai: aiResult
             }
         });
