@@ -1,7 +1,0 @@
-flask
-pytesseract
-pillow
-pdf2image
-google-cloud-vision
-anthropic
-requests

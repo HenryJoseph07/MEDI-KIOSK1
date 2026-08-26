@@ -28,6 +28,7 @@ def run_pipeline(filepath: str) -> dict:
     # PDF
     if is_pdf(filepath):
         raw_text = extract_text_from_pdf(filepath)
+
     else:
         # Image → Gemini Vision
         raw_text = run_ocr(filepath)
@@ -38,7 +39,7 @@ def run_pipeline(filepath: str) -> dict:
     # Gemini → structured medical information
     structured_summary = summarize(cleaned)
 
-    # Keep OCR text for debugging/frontend
+    # Keep extracted text for debugging/frontend
     structured_summary["raw_text_preview"] = cleaned[:1000]
 
     return structured_summary
@@ -53,6 +54,7 @@ if __name__ == "__main__":
     filepath = sys.argv[1]
 
     try:
+
         result = run_pipeline(filepath)
 
         print(
@@ -65,5 +67,6 @@ if __name__ == "__main__":
         )
 
     except Exception as e:
+
         print(f"[Pipeline] ERROR: {e}")
         sys.exit(1)
