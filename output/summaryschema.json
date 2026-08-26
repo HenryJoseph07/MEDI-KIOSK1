@@ -1,0 +1,51 @@
+{
+  "$description": "This is the exact shape of the JSON that ai_pipeline/main.py's run_pipeline() returns, and that api_server.py's /process-document endpoint responds with (wrapped in {ok, data}). Frontend and backend teammates should build against this contract.",
+
+  "document_type": {
+    "type": "string",
+    "description": "One of: prescription | lab_report | discharge_summary | unknown. Only reliably populated when the LLM structuring path runs (ANTHROPIC_API_KEY set) — the rule-based fallback always returns 'unknown'."
+  },
+  "date": {
+    "type": "string or null",
+    "description": "Date found on the document, as extracted (not normalized to a fixed format)."
+  },
+  "diagnoses": {
+    "type": "array of strings",
+    "description": "Lines/phrases identified as diagnosis or chief-complaint mentions."
+  },
+  "medicines": {
+    "type": "array of objects",
+    "item_shape": { "name": "string", "dosage": "string or null", "frequency": "string or null" },
+    "description": "name is always populated. dosage/frequency are only reliably split out on the LLM path — the rule-based fallback puts the whole matched line in 'name' and leaves dosage/frequency null."
+  },
+  "lab_values": {
+    "type": "array of objects",
+    "item_shape": { "test": "string", "value": "number", "unit": "string", "flag": "'HIGH' | 'LOW' | 'NORMAL' | null" },
+    "description": "flag is null when no reference range could be found either in the document text or the internal fallback table."
+  },
+  "source": {
+    "type": "string",
+    "description": "'llm' or 'rule_based' — tells you which extraction path actually produced this result. Useful for debugging accuracy issues."
+  },
+  "processed_at": {
+    "type": "string (ISO 8601 timestamp)"
+  },
+  "raw_text_preview": {
+    "type": "string",
+    "description": "First ~400 characters of the cleaned OCR text, for a raw-text fallback view on the frontend and for debugging."
+  },
+
+  "example": {
+    "document_type": "lab_report",
+    "date": "06/08/2023",
+    "diagnoses": [],
+    "medicines": [],
+    "lab_values": [
+      { "test": "Haemoglobin", "value": 13.0, "unit": "g/dL", "flag": "NORMAL" },
+      { "test": "TLC", "value": 2300, "unit": "10^3/ul", "flag": "HIGH" }
+    ],
+    "source": "rule_based",
+    "processed_at": "2026-08-25T12:38:35",
+    "raw_text_preview": "ProCare Laboratory Report..."
+  }
+}
