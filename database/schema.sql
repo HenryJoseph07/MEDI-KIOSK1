@@ -102,6 +102,9 @@ CREATE TABLE IF NOT EXISTS documents (
 
     mime_type VARCHAR(100),
 
+    processing_status VARCHAR(20) NOT NULL DEFAULT 'pending'
+        CHECK (processing_status IN ('pending', 'processing', 'completed', 'failed')),
+
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_document_patient

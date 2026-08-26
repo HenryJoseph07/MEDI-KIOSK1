@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 const pool = require("../config/db");
 
 // ===============================
@@ -23,7 +24,6 @@ const register = async (req, res) => {
             });
         }
 
-        // Check existing user
         const existingUser = await pool.query(
             "SELECT * FROM users WHERE email = $1",
             [email]
@@ -36,20 +36,43 @@ const register = async (req, res) => {
             });
         }
 
-        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
+        const userId = `${role === "patient" ? "PAT" : "DOC"}-${crypto.randomUUID()}`;
 
-        // Create user
-        const result = await pool.query(
-            `INSERT INTO users (name, email, password, role)
-             VALUES ($1, $2, $3, $4)
-             RETURNING id, name, email, role`,
-            [name, email, hashedPassword, role]
-        );
+        const client = await pool.connect();
+        let result;
+
+        try {
+            await client.query("BEGIN");
+            result = await client.query(
+                `INSERT INTO users (user_id, name, email, password_hash, role)
+                 VALUES ($1, $2, $3, $4, $5)
+                 RETURNING id, user_id, name, email, role`,
+                [userId, name, email, hashedPassword, role]
+            );
+
+            if (role === "patient") {
+                await client.query(
+                    "INSERT INTO patients (user_id) VALUES ($1)",
+                    [result.rows[0].id]
+                );
+            } else {
+                await client.query(
+                    "INSERT INTO doctors (user_id) VALUES ($1)",
+                    [result.rows[0].id]
+                );
+            }
+
+            await client.query("COMMIT");
+        } catch (error) {
+            await client.query("ROLLBACK");
+            throw error;
+        } finally {
+            client.release();
+        }
 
         const user = result.rows[0];
 
-        // Create JWT
         const token = jwt.sign(
             {
                 userId: user.id,
@@ -111,7 +134,7 @@ const login = async (req, res) => {
         // Check password
         const passwordMatch = await bcrypt.compare(
             password,
-            user.password
+            user.password_hash
         );
 
         if (!passwordMatch) {
@@ -139,6 +162,7 @@ const login = async (req, res) => {
             token,
             user: {
                 id: user.id,
+                userId: user.user_id,
                 name: user.name,
                 email: user.email,
                 role: user.role

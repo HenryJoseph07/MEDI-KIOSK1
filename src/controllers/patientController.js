@@ -10,6 +10,7 @@ const getMyProfile = async (req, res) => {
         const result = await pool.query(
             `SELECT
                 id,
+                user_id,
                 name,
                 email,
                 role,
@@ -58,7 +59,7 @@ const getPatientById = async (req, res) => {
                 role,
                 created_at
              FROM users
-             WHERE id = $1
+             WHERE user_id = $1
              AND role = 'patient'`,
             [userId]
         );

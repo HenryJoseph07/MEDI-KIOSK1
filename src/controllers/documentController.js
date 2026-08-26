@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 const fs = require("fs");
+const { processDocument } = require("../services/aiService");
 
 // ===============================
 // UPLOAD DOCUMENT
@@ -40,46 +41,98 @@ const uploadDocument = async (req, res) => {
             });
         }
 
-        // Save document information in database
+        const patientResult = await pool.query(
+            "SELECT id FROM patients WHERE user_id = $1",
+            [userId]
+        );
+
+        if (patientResult.rows.length === 0) {
+            fs.unlink(req.file.path, () => {});
+            return res.status(404).json({
+                success: false,
+                message: "Patient profile not found"
+            });
+        }
+
         const result = await pool.query(
             `INSERT INTO documents
             (
-                user_id,
-                document_name,
+                patient_id,
+                original_file_name,
                 document_type,
                 file_path,
                 mime_type,
                 processing_status
             )
-            VALUES ($1, $2, $3, $4, $5, $6)
+            VALUES ($1, $2, $3, $4, $5, 'processing')
             RETURNING id,
-                      user_id,
-                      document_name,
+                      patient_id,
+                      original_file_name,
                       document_type,
                       processing_status,
-                      created_at`,
+                      uploaded_at`,
             [
-                userId,
+                patientResult.rows[0].id,
                 documentName || req.file.originalname,
                 documentType || "other",
                 req.file.path,
-                req.file.mimetype,
-                "pending"
+                req.file.mimetype
             ]
         );
 
         const document = result.rows[0];
+        let aiResult;
+
+        try {
+            aiResult = await processDocument(req.file);
+        } catch (error) {
+            await pool.query(
+                "UPDATE documents SET processing_status = 'failed' WHERE id = $1",
+                [document.id]
+            );
+            return res.status(502).json({
+                success: false,
+                message: "Document uploaded but AI processing failed",
+                documentId: document.id
+            });
+        }
+
+        const summaryText = aiResult.summary || aiResult.raw_text_preview || "AI summary generated";
+        await pool.query(
+            `INSERT INTO medical_summaries
+                (patient_id, conditions, medications, lab_findings, summary)
+             VALUES ($1, $2::jsonb, $3::jsonb, $4::jsonb, $5)
+             ON CONFLICT (patient_id) DO UPDATE SET
+                conditions = EXCLUDED.conditions,
+                medications = EXCLUDED.medications,
+                lab_findings = EXCLUDED.lab_findings,
+                summary = EXCLUDED.summary,
+                updated_at = CURRENT_TIMESTAMP`,
+            [
+                patientResult.rows[0].id,
+                JSON.stringify(aiResult.diagnoses || aiResult.conditions || []),
+                JSON.stringify(aiResult.medicines || aiResult.medications || []),
+                JSON.stringify(aiResult.lab_values || aiResult.lab_findings || []),
+                summaryText
+            ]
+        );
+
+        await pool.query(
+            "UPDATE documents SET processing_status = 'completed' WHERE id = $1",
+            [document.id]
+        );
 
         res.status(201).json({
             success: true,
             message: "Document uploaded successfully",
             document: {
                 id: document.id,
-                userId: document.user_id,
-                name: document.document_name,
+                patientId: document.patient_id,
+                name: document.original_file_name,
                 type: document.document_type,
                 status: document.processing_status,
-                createdAt: document.created_at
+                createdAt: document.uploaded_at,
+                ai: aiResult
             }
         });
 
@@ -110,13 +163,14 @@ const getMyDocuments = async (req, res) => {
         const result = await pool.query(
             `SELECT
                 id,
-                document_name,
+                     original_file_name,
                 document_type,
                 processing_status,
-                created_at
-             FROM documents
-             WHERE user_id = $1
-             ORDER BY created_at DESC`,
+                     uploaded_at
+                 FROM documents d
+                 JOIN patients p ON p.id = d.patient_id
+                 WHERE p.user_id = $1
+                 ORDER BY uploaded_at DESC`,
             [userId]
         );
 

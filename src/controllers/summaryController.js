@@ -1,88 +1,57 @@
 const pool = require("../config/db");
 
-// ==========================================
-// SAVE / UPDATE AI GENERATED SUMMARY
-// Called by the AI processing service
-// ==========================================
 const saveSummary = async (req, res) => {
     try {
         const {
-            documentId,
-            userId,
             summary,
             conditions,
             medications,
             allergies,
-            keyFindings,
-            recommendations
+            labFindings,
+            previousHistory
         } = req.body;
 
-        if (!documentId || !userId || !summary) {
+        if (!summary) {
             return res.status(400).json({
                 success: false,
-                message: "documentId, userId and summary are required"
+                message: "summary is required"
             });
         }
 
-        // Verify that document belongs to this patient
-        const documentCheck = await pool.query(
-            `SELECT id
-             FROM documents
-             WHERE id = $1
-             AND user_id = $2`,
-            [documentId, userId]
+        const patient = await pool.query(
+            "SELECT id FROM patients WHERE user_id = $1",
+            [req.user.userId]
         );
 
-        if (documentCheck.rows.length === 0) {
+        if (patient.rows.length === 0) {
             return res.status(404).json({
                 success: false,
-                message: "Document not found for this patient"
+                message: "Patient profile not found"
             });
         }
 
-        // Insert summary
         const result = await pool.query(
-            `INSERT INTO health_summaries
-            (
-                user_id,
-                document_id,
-                summary,
-                conditions,
-                medications,
-                allergies,
-                key_findings,
-                recommendations
-            )
-            VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
-            RETURNING
-                id,
-                user_id,
-                document_id,
-                summary,
-                conditions,
-                medications,
-                allergies,
-                key_findings,
-                recommendations,
-                created_at`,
+            `INSERT INTO medical_summaries
+                (patient_id, conditions, medications, allergies, lab_findings, previous_history, summary)
+             VALUES ($1, $2::jsonb, $3::jsonb, $4::jsonb, $5::jsonb, $6::jsonb, $7)
+             ON CONFLICT (patient_id) DO UPDATE SET
+                conditions = EXCLUDED.conditions,
+                medications = EXCLUDED.medications,
+                allergies = EXCLUDED.allergies,
+                lab_findings = EXCLUDED.lab_findings,
+                previous_history = EXCLUDED.previous_history,
+                summary = EXCLUDED.summary,
+                updated_at = CURRENT_TIMESTAMP
+             RETURNING *`,
             [
-                userId,
-                documentId,
-                summary,
-                conditions || [],
-                medications || [],
-                allergies || [],
-                keyFindings || [],
-                recommendations || []
+                patient.rows[0].id,
+                JSON.stringify(conditions || []),
+                JSON.stringify(medications || []),
+                JSON.stringify(allergies || []),
+                JSON.stringify(labFindings || []),
+                JSON.stringify(previousHistory || []),
+                summary
             ]
-        );
-
-        // Mark document as processed
-        await pool.query(
-            `UPDATE documents
-             SET processing_status = 'completed'
-             WHERE id = $1`,
-            [documentId]
         );
 
         res.status(201).json({
@@ -111,19 +80,10 @@ const getMySummary = async (req, res) => {
         const userId = req.user.userId;
 
         const result = await pool.query(
-            `SELECT
-                id,
-                document_id,
-                summary,
-                conditions,
-                medications,
-                allergies,
-                key_findings,
-                recommendations,
-                created_at
-             FROM health_summaries
-             WHERE user_id = $1
-             ORDER BY created_at DESC`,
+            `SELECT ms.*
+             FROM medical_summaries ms
+             JOIN patients p ON p.id = ms.patient_id
+             WHERE p.user_id = $1`,
             [userId]
         );
 
@@ -152,9 +112,9 @@ const getPatientSummary = async (req, res) => {
 
         // Verify patient exists
         const patient = await pool.query(
-            `SELECT id, name, email
+            `SELECT id, user_id, name, email
              FROM users
-             WHERE id = $1
+             WHERE user_id = $1
              AND role = 'patient'`,
             [userId]
         );
@@ -168,19 +128,11 @@ const getPatientSummary = async (req, res) => {
 
         // Get summaries
         const result = await pool.query(
-            `SELECT
-                id,
-                summary,
-                conditions,
-                medications,
-                allergies,
-                key_findings,
-                recommendations,
-                created_at
-             FROM health_summaries
-             WHERE user_id = $1
-             ORDER BY created_at DESC`,
-            [userId]
+            `SELECT ms.*
+             FROM medical_summaries ms
+             JOIN patients p ON p.id = ms.patient_id
+             WHERE p.user_id = $1`,
+            [patient.rows[0].user_id]
         );
 
         res.json({
@@ -188,6 +140,7 @@ const getPatientSummary = async (req, res) => {
 
             patient: {
                 id: patient.rows[0].id,
+                userId: patient.rows[0].user_id,
                 name: patient.rows[0].name,
                 email: patient.rows[0].email
             },
