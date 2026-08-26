@@ -130,7 +130,7 @@ const uploadDocument = async (req, res) => {
                 patientId: document.patient_id,
                 name: document.original_file_name,
                 type: document.document_type,
-                status: document.processing_status,
+                status: "completed",
                 createdAt: document.uploaded_at,
                 ai: aiResult
             }
