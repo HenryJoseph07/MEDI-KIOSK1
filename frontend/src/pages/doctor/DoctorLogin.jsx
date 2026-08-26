@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { apiRequest } from "../../api/api";
+import "./DoctorLogin.css";
 
 function DoctorLogin() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    setError("");
+
     if (!email || !password) {
-      alert("Please enter email and password");
+      setError("Please enter email and password");
       return;
     }
 
@@ -33,11 +38,14 @@ function DoctorLogin() {
       );
 
       if (data.user.role !== "doctor") {
-        alert("This account is not a doctor account.");
+        setError("This account is not a doctor account.");
         return;
       }
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem(
+        "token",
+        data.token
+      );
 
       localStorage.setItem(
         "user",
@@ -46,61 +54,114 @@ function DoctorLogin() {
 
       alert("Doctor login successful!");
 
-      navigate("/doctor-dashboard");
+      navigate("/doctor/dashboard");
 
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <h1>MEDIKIOSK</h1>
+    <div className="doctor-login-page">
 
-      <h2>Doctor Login</h2>
+      <div className="doctor-login-card">
 
-      <form onSubmit={handleLogin}>
-
-        <div>
-          <label>Email</label>
-
-          <input
-            type="email"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-            placeholder="Enter email"
-          />
+        {/* BRAND */}
+        <div className="doctor-login-brand">
+          MEDIKIOSK
         </div>
 
-        <div>
-          <label>Password</label>
+        <p className="doctor-login-subtitle">
+          Secure healthcare management platform
+        </p>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
-            placeholder="Enter password"
-          />
+        {/* TITLE */}
+        <h1 className="doctor-login-title">
+          Doctor Login
+        </h1>
+
+        {/* FORM */}
+        <form
+          className="doctor-login-form"
+          onSubmit={handleLogin}
+        >
+
+          {/* EMAIL */}
+          <div className="doctor-login-form-group">
+
+            <label>
+              Email
+            </label>
+
+            <input
+              type="email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              placeholder="Enter email"
+              required
+            />
+
+          </div>
+
+
+          {/* PASSWORD */}
+          <div className="doctor-login-form-group">
+
+            <label>
+              Password
+            </label>
+
+            <input
+              type="password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              placeholder="Enter password"
+              required
+            />
+
+          </div>
+
+
+          {/* ERROR */}
+          {error && (
+            <div className="doctor-login-error">
+              {error}
+            </div>
+          )}
+
+
+          {/* LOGIN BUTTON */}
+          <button
+            type="submit"
+            className="doctor-login-btn"
+            disabled={loading}
+          >
+            {loading
+              ? "Logging in..."
+              : "Login"}
+          </button>
+
+        </form>
+
+
+        {/* REGISTER LINK */}
+        <div className="doctor-register-link">
+
+          Don't have an account?
+
+          <Link to="/doctor/register">
+            Register as Doctor
+          </Link>
+
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
-
-      </form>
-
-      <p>
-        Don't have an account?{" "}
-        <Link to="/doctor-register">
-          Register as Doctor
-        </Link>
-      </p>
+      </div>
 
     </div>
   );

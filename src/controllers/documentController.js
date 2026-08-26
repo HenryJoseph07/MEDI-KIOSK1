@@ -278,21 +278,23 @@ const uploadDocument = async (req, res) => {
 // GET MY DOCUMENTS
 // PATIENT ONLY
 // ===============================
+
 const getMyDocuments = async (req, res) => {
     try {
         const userId = req.user.userId;
 
         const result = await pool.query(
             `SELECT
-                id,
-                original_file_name,
-                document_type,
-                processing_status,
-                uploaded_at
+                d.id,
+                d.original_file_name,
+                d.document_type,
+                d.processing_status,
+                d.uploaded_at
              FROM documents d
-             JOIN patients p ON p.id = d.patient_id
+             JOIN patients p
+                ON p.id = d.patient_id
              WHERE p.user_id = $1
-             ORDER BY uploaded_at DESC`,
+             ORDER BY d.uploaded_at DESC`,
             [userId]
         );
 
@@ -310,9 +312,90 @@ const getMyDocuments = async (req, res) => {
         });
     }
 };
+const getPatientDocuments = async (req, res) => {
 
+    try {
 
+        const { userId } = req.params;
+
+        const result = await pool.query(
+            `SELECT
+                d.id,
+                d.original_file_name,
+                d.document_type,
+                d.processing_status,
+                d.uploaded_at,
+                d.file_path
+             FROM documents d
+             JOIN patients p
+                ON p.id = d.patient_id
+             JOIN users u
+                ON u.id = p.user_id
+             WHERE u.user_id = $1
+             ORDER BY d.uploaded_at DESC`,
+            [userId]
+        );
+
+        res.json({
+            success: true,
+            documents: result.rows
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Get Patient Documents Error:",
+            error
+        );
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch patient documents"
+        });
+
+    }
+};
+// ===============================
+// GET ALL PATIENTS
+// DOCTOR ONLY
+// ===============================
+
+const getPatients = async (req, res) => {
+    try {
+        const result = await pool.query(
+            `SELECT
+                u.id,
+                u.user_id,
+                u.name,
+                u.email,
+                p.id AS patient_id
+             FROM users u
+             JOIN patients p
+                ON p.user_id = u.id
+             WHERE u.role = 'patient'
+             ORDER BY u.name ASC`
+        );
+
+        res.json({
+            success: true,
+            patients: result.rows
+        });
+
+    } catch (error) {
+        console.error("Get Patients Error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch patients"
+        });
+    }
+};
+// ===============================
+// EXPORT CONTROLLERS
+// ===============================
 module.exports = {
     uploadDocument,
-    getMyDocuments
+    getMyDocuments,
+    getPatientDocuments,
+    getPatients
 };

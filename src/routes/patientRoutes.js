@@ -2,7 +2,8 @@ const express = require("express");
 
 const {
     getMyProfile,
-    getPatientById
+    getPatientById,
+    getAllPatients
 } = require("../controllers/patientController");
 
 const {
@@ -20,7 +21,13 @@ router.get(
     patientOnly,
     getMyProfile
 );
-
+// Doctor can see all patients
+router.get(
+    "/",
+    protect,
+    doctorOnly,
+    getAllPatients
+);
 // Doctor can find a patient using User ID
 router.get(
     "/:userId",

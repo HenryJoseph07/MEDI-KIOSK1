@@ -52,58 +52,67 @@ function PatientLogin() {
   };
 
   return (
-    <div>
-      <h1>MEDIKIOSK</h1>
+    <div className="auth-page">
+
+    <div className="auth-card">
+
+      <div className="auth-header">
+        <h1>MEDIKIOSK</h1>
+        <p>Digital Patient Case Management System</p>
+      </div>
 
       <h2>Patient Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="auth-form">
 
-        <div>
+        <div className="form-group">
           <label>Email</label>
 
           <input
             type="email"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Password</label>
 
           <input
             type="password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button
+          type="submit"
+          className="auth-button"
+          disabled={loading}
+        >
           {loading ? "Logging in..." : "Login"}
         </button>
 
       </form>
 
-      <p>
+      <p className="auth-link">
         Don't have an account?{" "}
-        <Link to="/patient-register">
+        <Link to="/patient/register">
           Register as Patient
         </Link>
       </p>
 
-      <p>
-        <Link to="/doctor-login">
+      <p className="auth-link">
+        <Link to="/doctor/login">
           Doctor Login
         </Link>
       </p>
+
     </div>
+
+  </div>
   );
 }
 

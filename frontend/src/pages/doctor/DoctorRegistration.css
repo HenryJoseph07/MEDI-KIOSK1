@@ -1,0 +1,315 @@
+/* =========================================
+   MEDIKIOSK - DOCTOR REGISTRATION
+   Page-specific styling
+   Does NOT affect backend/API functionality
+   ========================================= */
+
+.doctor-registration-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(20, 163, 177, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(28, 72, 130, 0.08),
+            transparent 30%
+        ),
+        #f4f9fb;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color: #173b63;
+}
+
+
+/* =========================================
+   REGISTRATION CARD
+   ========================================= */
+
+.doctor-registration-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 42px 44px;
+
+    background: #ffffff;
+    border: 1px solid #e4eef2;
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 50px rgba(20, 61, 94, 0.10),
+        0 4px 12px rgba(20, 61, 94, 0.05);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BRAND
+   ========================================= */
+
+.doctor-registration-brand {
+    text-align: center;
+    margin-bottom: 8px;
+
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    color: #087f8c;
+}
+
+.doctor-registration-subtitle {
+    text-align: center;
+    margin: 0 0 30px;
+
+    color: #71859b;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.doctor-registration-title {
+    margin: 0 0 28px;
+
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 750;
+
+    color: #173b63;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.doctor-registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+/* =========================================
+   FIELD
+   ========================================= */
+
+.doctor-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.doctor-form-group label {
+    font-size: 14px;
+    font-weight: 650;
+    color: #274d70;
+}
+
+
+/* =========================================
+   INPUTS
+   ========================================= */
+
+.doctor-form-group input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d5e2e9;
+    border-radius: 10px;
+
+    background: #fbfdfe;
+
+    color: #173b63;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.doctor-form-group input::placeholder {
+    color: #9aaaba;
+}
+
+.doctor-form-group input:hover {
+    border-color: #a9c7d3;
+}
+
+.doctor-form-group input:focus {
+    background: #ffffff;
+    border-color: #0d99a8;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 153, 168, 0.12);
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+   ========================================= */
+
+.doctor-register-btn {
+    width: 100%;
+    height: 50px;
+
+    margin-top: 6px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #0796a6,
+        #087f8c
+    );
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(8, 127, 140, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.doctor-register-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 24px rgba(8, 127, 140, 0.25);
+}
+
+.doctor-register-btn:active {
+    transform: translateY(0);
+}
+
+.doctor-register-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   LOGIN LINK
+   ========================================= */
+
+.doctor-login-link {
+    margin-top: 24px;
+
+    text-align: center;
+
+    color: #71859b;
+    font-size: 14px;
+}
+
+.doctor-login-link a {
+    margin-left: 5px;
+
+    color: #087f8c;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.doctor-login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+   ========================================= */
+
+.doctor-registration-error {
+    padding: 11px 13px;
+
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+
+    background: #fff5f5;
+
+    color: #c53030;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+   ========================================= */
+
+.doctor-registration-success {
+    padding: 11px 13px;
+
+    border: 1px solid #b7eadb;
+    border-radius: 9px;
+
+    background: #effcf7;
+
+    color: #087f6f;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .doctor-registration-page {
+        padding: 25px 15px;
+    }
+
+    .doctor-registration-card {
+        padding: 32px 24px;
+        border-radius: 18px;
+    }
+
+    .doctor-registration-title {
+        font-size: 24px;
+    }
+
+    .doctor-registration-brand {
+        font-size: 26px;
+    }
+}

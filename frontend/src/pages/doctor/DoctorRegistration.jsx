@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { apiRequest } from "../../api/api";
+import "./DoctorRegistration.css";
 
 function DoctorRegistration() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function DoctorRegistration() {
 
       alert("Doctor registration successful!");
 
-      navigate("/doctor-dashboard");
+      navigate("/doctor/dashboard");
 
     } catch (error) {
       alert(error.message);
@@ -62,79 +63,134 @@ function DoctorRegistration() {
   };
 
   return (
-    <div>
-      <h1>MEDIKIOSK</h1>
+    <div className="doctor-registration-page">
 
-      <h2>Doctor Registration</h2>
+      <div className="doctor-registration-card">
 
-      <form onSubmit={handleRegister}>
-
-        <div>
-          <label>Doctor Name</label>
-
-          <input
-            type="text"
-            value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
-            placeholder="Enter doctor name"
-          />
+        {/* BRAND */}
+        <div className="doctor-registration-brand">
+          MEDIKIOSK
         </div>
 
-        <div>
-          <label>Email</label>
+        <p className="doctor-registration-subtitle">
+          Secure healthcare management platform
+        </p>
 
-          <input
-            type="email"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-            placeholder="Enter email"
-          />
-        </div>
+        {/* TITLE */}
+        <h1 className="doctor-registration-title">
+          Doctor Registration
+        </h1>
 
-        <div>
-          <label>Password</label>
+        {/* FORM */}
+        <form
+          className="doctor-registration-form"
+          onSubmit={handleRegister}
+        >
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
-            placeholder="Enter password"
-          />
-        </div>
+          {/* DOCTOR NAME */}
+          <div className="doctor-form-group">
 
-        <div>
-          <label>Confirm Password</label>
+            <label htmlFor="doctor-name">
+              Doctor Name
+            </label>
 
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) =>
-              setConfirmPassword(e.target.value)
-            }
-            placeholder="Confirm password"
-          />
-        </div>
+            <input
+              id="doctor-name"
+              type="text"
+              value={name}
+              onChange={(e) =>
+                setName(e.target.value)
+              }
+              placeholder="Enter doctor name"
+            />
 
-        <button type="submit" disabled={loading}>
-          {loading
-            ? "Registering..."
-            : "Register"}
-        </button>
+          </div>
 
-      </form>
 
-      <p>
-        Already registered?{" "}
-        <Link to="/doctor-login">
-          Doctor Login
-        </Link>
-      </p>
+          {/* EMAIL */}
+          <div className="doctor-form-group">
+
+            <label htmlFor="doctor-email">
+              Email
+            </label>
+
+            <input
+              id="doctor-email"
+              type="email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              placeholder="Enter email"
+            />
+
+          </div>
+
+
+          {/* PASSWORD */}
+          <div className="doctor-form-group">
+
+            <label htmlFor="doctor-password">
+              Password
+            </label>
+
+            <input
+              id="doctor-password"
+              type="password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              placeholder="Enter password"
+            />
+
+          </div>
+
+
+          {/* CONFIRM PASSWORD */}
+          <div className="doctor-form-group">
+
+            <label htmlFor="doctor-confirm-password">
+              Confirm Password
+            </label>
+
+            <input
+              id="doctor-confirm-password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) =>
+                setConfirmPassword(e.target.value)
+              }
+              placeholder="Confirm password"
+            />
+
+          </div>
+
+
+          {/* REGISTER */}
+          <button
+            type="submit"
+            className="doctor-register-btn"
+            disabled={loading}
+          >
+            {loading
+              ? "Registering..."
+              : "Register"}
+          </button>
+
+        </form>
+
+
+        {/* LOGIN */}
+        <p className="doctor-login-link">
+          Already registered?{" "}
+
+          <Link to="/doctor-login">
+            Doctor Login
+          </Link>
+        </p>
+
+      </div>
 
     </div>
   );

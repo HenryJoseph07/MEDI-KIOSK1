@@ -62,80 +62,83 @@ function PatientRegistration() {
   };
 
   return (
-    <div>
-      <h1>MEDIKIOSK</h1>
+<div className="auth-page">
+
+    <div className="auth-card">
+
+      <div className="auth-header">
+        <h1>MEDIKIOSK</h1>
+        <p>Digital Patient Case Management System</p>
+      </div>
 
       <h2>Patient Registration</h2>
 
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister} className="auth-form">
 
-        <div>
+        <div className="form-group">
           <label>Full Name</label>
 
           <input
             type="text"
             value={name}
-            onChange={(e) =>
-              setName(e.target.value)
-            }
+            onChange={(e) => setName(e.target.value)}
             placeholder="Enter full name"
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Email</label>
 
           <input
             type="email"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter email"
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Password</label>
 
           <input
             type="password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Confirm Password</label>
 
           <input
             type="password"
             value={confirmPassword}
-            onChange={(e) =>
-              setConfirmPassword(e.target.value)
-            }
+            onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm password"
           />
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading
-            ? "Registering..."
-            : "Register"}
+        <button
+          type="submit"
+          className="auth-button"
+          disabled={loading}
+        >
+          {loading ? "Registering..." : "Register"}
         </button>
 
       </form>
 
-      <p>
+      <p className="auth-link">
         Already registered?{" "}
-        <Link to="/patient-login">
+        <Link to="/patient/login">
           Patient Login
         </Link>
       </p>
+
     </div>
+
+  </div>
   );
 }
 

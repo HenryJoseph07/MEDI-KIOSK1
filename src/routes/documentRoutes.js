@@ -2,12 +2,14 @@ const express = require("express");
 
 const {
     uploadDocument,
-    getMyDocuments
+    getMyDocuments,
+    getPatientDocuments,
+    getPatients
 } = require("../controllers/documentController");
-
 const {
     protect,
-    patientOnly
+    patientOnly,
+    doctorOnly
 } = require("../middleware/authMiddleware");
 
 const upload = require("../middleware/uploadMiddleware");
@@ -29,4 +31,17 @@ router.get(
     getMyDocuments
 );
 
+router.get(
+    "/patients",
+    protect,
+    doctorOnly,
+    getPatients
+);
+
+router.get(
+    "/patient/:userId",
+    protect,
+    doctorOnly,
+    getPatientDocuments
+);
 module.exports = router;

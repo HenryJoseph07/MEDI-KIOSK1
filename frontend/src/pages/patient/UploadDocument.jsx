@@ -1,95 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./UploadDocument.css";
 import { apiRequest } from "../../api/api";
 
 function UploadDocument() {
   const navigate = useNavigate();
-
-  const [selectedFile, setSelectedFile] =
-    useState(null);
-
-  const [documentType, setDocumentType] =
-    useState("medical_report");
-
+  
+  const [documentType, setDocumentType] = useState("Medical Report");
+  const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleUpload = async (e) => {
+    e.preventDefault();
 
     if (!file) {
+      alert("Please choose a medical document");
       return;
     }
-
-    const allowedTypes = [
-      "application/pdf",
-      "image/jpeg",
-      "image/png",
-    ];
-
-    if (!allowedTypes.includes(file.type)) {
-      alert(
-        "Only PDF, JPG, JPEG and PNG files are allowed."
-      );
-
-      e.target.value = "";
-      return;
-    }
-
-    if (file.size > 10 * 1024 * 1024) {
-      alert("File size must be less than 10 MB.");
-
-      e.target.value = "";
-      return;
-    }
-
-    setSelectedFile(file);
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert("Please select a file.");
-      return;
-    }
-
-    const formData = new FormData();
-
-    formData.append(
-      "document",
-      selectedFile
-    );
-
-    formData.append(
-      "documentType",
-      documentType
-    );
-
-    formData.append(
-      "documentName",
-      selectedFile.name
-    );
 
     try {
       setLoading(true);
 
-      const data = await apiRequest(
-        "/api/documents/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const formData = new FormData();
 
-      console.log(
-        "Upload response:",
-        data
-      );
+formData.append("document", file);
+formData.append("documentType", documentType);
+formData.append("documentName", file.name);
 
-      alert(
-        "Document uploaded successfully!"
-      );
+const data = await apiRequest(
+  "/api/documents/upload",
+  {
+    method: "POST",
+    body: formData
+  }
+);
 
-      navigate("/patient-dashboard");
+alert(
+  data.message ||
+  "Document uploaded successfully!"
+);
 
+navigate("/health-summary");
     } catch (error) {
       alert(error.message);
     } finally {
@@ -98,85 +49,121 @@ function UploadDocument() {
   };
 
   return (
-    <div>
+    <div className="upload-page">
 
-      <h1>Upload Medical Document</h1>
+      <div className="upload-card">
 
-      <div>
+        {/* Brand */}
+        <div className="upload-brand">
+          MEDIKIOSK
+        </div>
 
-        <label>
-          Document Type
-        </label>
-
-        <select
-          value={documentType}
-          onChange={(e) =>
-            setDocumentType(
-              e.target.value
-            )
-          }
-        >
-          <option value="prescription">
-            Prescription
-          </option>
-
-          <option value="lab_report">
-            Lab Report
-          </option>
-
-          <option value="health_report">
-            Health Report
-          </option>
-
-          <option value="medical_report">
-            Medical Report
-          </option>
-
-          <option value="other">
-            Other
-          </option>
-        </select>
-
-      </div>
-
-      <div>
-
-        <label>
-          Choose Medical Document
-        </label>
-
-        <input
-          type="file"
-          accept=".pdf,.jpg,.jpeg,.png"
-          onChange={handleFileChange}
-        />
-
-      </div>
-
-      {selectedFile && (
-        <p>
-          Selected:
-          {" "}
-          {selectedFile.name}
+        <p className="upload-subtitle">
+          Secure healthcare management platform
         </p>
-      )}
 
-      <button
-        onClick={handleUpload}
-        disabled={loading}
-      >
-        {loading
-          ? "Uploading..."
-          : "Upload Document"}
-      </button>
+        {/* Heading */}
+        <h1 className="upload-title">
+          Upload Medical Document
+        </h1>
 
-      <button
-        onClick={() =>
-          navigate("/patient-dashboard")
-        }
-      >
-        Back
-      </button>
+        <p className="upload-description">
+          Upload your medical reports and documents securely.
+        </p>
+
+        <form
+          className="upload-form"
+          onSubmit={handleUpload}
+        >
+
+          {/* Document Type */}
+          <div className="upload-form-group">
+
+            <label htmlFor="documentType">
+              Document Type
+            </label>
+
+            <select
+  value={documentType}
+  onChange={(e) =>
+    setDocumentType(e.target.value)
+  }
+>
+  <option value="medical_report">
+    Medical Report
+  </option>
+
+  <option value="prescription">
+    Prescription
+  </option>
+
+  <option value="lab_report">
+    Lab Report
+  </option>
+
+  <option value="health_report">
+    Health Report
+  </option>
+
+  <option value="other">
+    Other
+  </option>
+</select>
+
+          </div>
+
+          {/* File */}
+          <div className="upload-form-group">
+
+            <label htmlFor="medicalFile">
+              Choose Medical Document
+            </label>
+
+            <div className="file-upload-box">
+
+              <input
+                id="medicalFile"
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+                onChange={(e) =>
+                  setFile(e.target.files[0])
+                }
+              />
+
+              {file && (
+                <p className="selected-file">
+                  Selected: {file.name}
+                </p>
+              )}
+
+            </div>
+
+          </div>
+
+          {/* Buttons */}
+          <div className="upload-actions">
+
+            <button
+              type="submit"
+              className="upload-btn"
+              disabled={loading}
+            >
+              {loading ? "Uploading..." : "Upload Document"}
+            </button>
+
+            <button
+              type="button"
+              className="back-btn"
+              onClick={() => navigate("/patient/dashboard")}
+            >
+              Back
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
 
     </div>
   );

@@ -42,7 +42,38 @@ const getMyProfile = async (req, res) => {
     }
 };
 
+// ===============================
+// GET ALL PATIENTS
+// DOCTOR ONLY
+// ===============================
+const getAllPatients = async (req, res) => {
+    try {
+        const result = await pool.query(
+            `SELECT
+                u.id,
+                u.user_id,
+                u.name,
+                u.email,
+                u.created_at
+             FROM users u
+             WHERE u.role = 'patient'
+             ORDER BY u.created_at DESC`
+        );
 
+        res.json({
+            success: true,
+            patients: result.rows
+        });
+
+    } catch (error) {
+        console.error("Get All Patients Error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch patients"
+        });
+    }
+};
 // ===============================
 // GET PATIENT BY USER ID
 // DOCTOR ONLY
@@ -53,14 +84,24 @@ const getPatientById = async (req, res) => {
 
         const result = await pool.query(
             `SELECT
-                id,
-                name,
-                email,
-                role,
-                created_at
-             FROM users
-             WHERE user_id = $1
-             AND role = 'patient'`,
+                u.id,
+                u.user_id,
+                u.name,
+                u.email,
+                u.role,
+                p.id AS patient_id,
+                p.date_of_birth,
+                p.gender,
+                p.blood_group,
+                p.abha_id,
+                p.address,
+                p.emergency_contact,
+                p.created_at
+             FROM users u
+             JOIN patients p
+                ON p.user_id = u.id
+             WHERE u.user_id = $1
+               AND u.role = 'patient'`,
             [userId]
         );
 
@@ -77,7 +118,7 @@ const getPatientById = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Get Patient Error:", error);
+        console.error("Get Patient By ID Error:", error);
 
         res.status(500).json({
             success: false,
@@ -86,8 +127,8 @@ const getPatientById = async (req, res) => {
     }
 };
 
-
 module.exports = {
     getMyProfile,
-    getPatientById
+    getPatientById,
+    getAllPatients
 };

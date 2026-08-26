@@ -110,7 +110,7 @@ const getPatientSummary = async (req, res) => {
     try {
         const { userId } = req.params;
 
-        // Verify patient exists
+        // Verify patient exists using PAT-xxxxx user_id
         const patient = await pool.query(
             `SELECT id, user_id, name, email
              FROM users
@@ -127,12 +127,13 @@ const getPatientSummary = async (req, res) => {
         }
 
         // Get summaries
+        // patients.user_id stores users.id (integer)
         const result = await pool.query(
             `SELECT ms.*
              FROM medical_summaries ms
              JOIN patients p ON p.id = ms.patient_id
              WHERE p.user_id = $1`,
-            [patient.rows[0].user_id]
+            [patient.rows[0].id]
         );
 
         res.json({
