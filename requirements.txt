@@ -1,8 +1,6 @@
+Flask
+flask-cors
 gunicorn
-flask
-pytesseract
-pillow
-pdf2image
-google-cloud-vision
-anthropic
-requests
+google-genai==2.19.0
+Pillow
+PyMuPDF
