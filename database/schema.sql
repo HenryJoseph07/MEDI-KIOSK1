@@ -14,9 +14,11 @@ CREATE TABLE IF NOT EXISTS users (
 
     name VARCHAR(150) NOT NULL,
 
-    email VARCHAR(150) UNIQUE NOT NULL,
+    email VARCHAR(150) UNIQUE,
 
     phone VARCHAR(20),
+
+    pin_hash TEXT,
 
     password_hash TEXT NOT NULL,
 
@@ -40,7 +42,11 @@ CREATE TABLE IF NOT EXISTS patients (
 
     date_of_birth DATE,
 
+    age INTEGER,
+
     gender VARCHAR(20),
+
+    language VARCHAR(50),
 
     blood_group VARCHAR(10),
 
@@ -102,6 +108,10 @@ CREATE TABLE IF NOT EXISTS documents (
 
     mime_type VARCHAR(100),
 
+    document_id VARCHAR(20) UNIQUE,
+
+    description TEXT,
+
     processing_status VARCHAR(20) NOT NULL DEFAULT 'pending'
         CHECK (processing_status IN ('pending', 'processing', 'completed', 'failed')),
 
@@ -161,3 +171,37 @@ ON documents(patient_id);
 
 CREATE INDEX IF NOT EXISTS idx_summaries_patient_id
 ON medical_summaries(patient_id);
+
+ALTER TABLE users ADD COLUMN IF NOT EXISTS pin_hash TEXT;
+ALTER TABLE patients ADD COLUMN IF NOT EXISTS age INTEGER;
+ALTER TABLE patients ADD COLUMN IF NOT EXISTS language VARCHAR(50);
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS document_id VARCHAR(20);
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS description TEXT;
+ALTER TABLE medical_summaries ADD COLUMN IF NOT EXISTS overview TEXT;
+ALTER TABLE medical_summaries ADD COLUMN IF NOT EXISTS recent_findings JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE medical_summaries ADD COLUMN IF NOT EXISTS recommendations JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE users ALTER COLUMN email DROP NOT NULL;
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_documents_document_id
+ON documents(document_id);
+
+CREATE TABLE IF NOT EXISTS medical_timeline (
+    id SERIAL PRIMARY KEY,
+    patient_id INTEGER NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    type VARCHAR(50) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    document_id INTEGER REFERENCES documents(id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_timeline_patient_id
+ON medical_timeline(patient_id, date DESC);
+
+CREATE TABLE IF NOT EXISTS patient_doctor_access (
+    id SERIAL PRIMARY KEY,
+    patient_id INTEGER NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
+    doctor_id INTEGER NOT NULL REFERENCES doctors(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (patient_id, doctor_id)
+);

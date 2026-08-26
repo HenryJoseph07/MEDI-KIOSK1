@@ -4,6 +4,15 @@ const {
     getMyProfile,
     getPatientById
 } = require("../controllers/patientController");
+const { patientRegister, patientLogin } = require("../controllers/frontendAuthController");
+const {
+    getPatient,
+    getDocuments,
+    getHealthSummary,
+    getTimeline
+} = require("../controllers/patientApiController");
+const { uploadDocument } = require("../controllers/documentController");
+const upload = require("../middleware/uploadMiddleware");
 
 const {
     protect,
@@ -13,6 +22,9 @@ const {
 
 const router = express.Router();
 
+router.post("/register", patientRegister);
+router.post("/login", patientLogin);
+
 // Patient can see their own profile
 router.get(
     "/me",
@@ -20,6 +32,12 @@ router.get(
     patientOnly,
     getMyProfile
 );
+
+router.get("/:patientId/documents", protect, getDocuments);
+router.post("/:patientId/documents", protect, patientOnly, upload.single("file"), uploadDocument);
+router.get("/:patientId/health-summary", protect, getHealthSummary);
+router.get("/:patientId/timeline", protect, getTimeline);
+router.get("/:patientId", protect, getPatient);
 
 // Doctor can find a patient using User ID
 router.get(
