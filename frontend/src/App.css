@@ -1,0 +1,228 @@
+/* Remove default browser spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eef8fa;
+}
+
+/* Main webpage */
+.home-page {
+  min-height: 100vh;
+  position: relative;
+
+  background: linear-gradient(
+    120deg,
+    #e3f6f8,
+    #f8fbfc,
+    #eaf5f7
+  );
+
+  color: #12345b;
+  overflow: hidden;
+}
+
+
+/* =========================
+   PROJECT TITLE
+   ========================= */
+
+.project-title {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #12345b;
+}
+
+.hospital-icon {
+  font-size: 28px;
+}
+
+.project-title h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.project-title p {
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.main-content {
+  width: 700px;
+
+  margin-left: 24%;
+  padding-top: 110px;
+}
+
+.main-content h1 {
+  font-size: 42px;
+  color: #173b68;
+  margin-bottom: 5px;
+}
+
+.welcome-text {
+  font-size: 22px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  max-width: 700px;
+}
+
+
+/* =========================
+   PATIENT / DOCTOR
+   ========================= */
+
+.user-section {
+  margin-top: 8px;
+}
+
+.user-icon {
+  font-size: 25px;
+  margin-bottom: 2px;
+}
+
+.user-section h2 {
+  font-size: 32px;
+  color: #173b68;
+  margin-bottom: 2px;
+}
+
+.user-section p {
+  font-size: 20px;
+  line-height: 1.25;
+  max-width: 700px;
+}
+
+
+/* =========================
+   LOGIN BUTTON
+   ========================= */
+
+.login-btn {
+  margin-top: 8px;
+
+  width: 176px;
+  height: 54px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #0796a8;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(0, 100, 120, 0.18);
+
+  transition: 0.2s ease;
+}
+
+.login-btn:hover {
+  background: #067f8e;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   REGISTER LINKS
+   ========================= */
+
+.register-text {
+  margin-top: 10px;
+  font-size: 18px !important;
+}
+
+/* Make Register here look like a hyperlink */
+.register-text a {
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.register-text a:hover {
+  color: #004499;
+}
+
+
+/* Space between patient and doctor */
+.doctor-section {
+  margin-top: 8px;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  position: absolute;
+
+  right: 35px;
+  bottom: 25px;
+
+  font-size: 18px;
+  color: #173b68;
+
+  text-align: right;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .project-title {
+    position: relative;
+    top: auto;
+    left: auto;
+
+    padding: 25px;
+  }
+
+  .main-content {
+    width: auto;
+    margin-left: 0;
+    padding: 30px;
+  }
+
+  .main-content h1 {
+    font-size: 34px;
+  }
+
+  .welcome-text {
+    font-size: 19px;
+  }
+
+  .footer {
+    position: relative;
+    right: auto;
+    bottom: auto;
+
+    padding: 30px;
+
+    text-align: center;
+  }
+}
