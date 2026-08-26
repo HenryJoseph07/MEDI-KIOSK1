@@ -10,13 +10,14 @@ const processDocument = async (file) => {
     }
 
     const form = new FormData();
-    form.append("file", fs.createReadStream(file.path), {
+
+    form.append("document", fs.createReadStream(file.path), {
         filename: file.originalname,
         contentType: file.mimetype
     });
 
     const response = await axios.post(
-        `${serviceUrl.replace(/\/$/, "")}/process`,
+        `${serviceUrl.replace(/\/$/, "")}/process-document`,
         form,
         {
             headers: form.getHeaders(),
