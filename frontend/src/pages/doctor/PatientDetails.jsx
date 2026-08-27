@@ -178,36 +178,29 @@ setDocuments(
           {summary ? (
 
             <HealthSummary
-              summary={{
-                symptoms:
-                  summary.conditions?.join(", ") ||
-                  "No symptoms available",
+  summary={{
+    symptoms:
+      summary.symptoms?.join(", ") ||
+      "No symptoms available",
 
-                diagnosis:
-                  summary.conditions?.join(", ") ||
-                  "No diagnosis available",
+    diagnosis:
+      summary.diagnosis?.join(", ") ||
+      "No diagnosis available",
 
-                medications:
-                  summary.medications
-                    ?.map((m) =>
-                      typeof m === "object"
-                        ? `${m.name || ""} ${m.dosage || ""}`
-                        : m
-                    )
-                    .join(", ") ||
-                  "No medication information available",
+    medications:
+      summary.medications
+        ?.map((m) =>
+          typeof m === "object"
+            ? `${m.name || ""} ${m.dosage || ""}`
+            : m
+        )
+        .join(", ") ||
+      "No medication information available",
 
-                labResults:
-                  summary.lab_findings
-                    ?.map((lab) =>
-                      typeof lab === "object"
-                        ? `${lab.test || ""}: ${lab.value || ""} ${lab.unit || ""}`
-                        : lab
-                    )
-                    .join(", ") ||
-                  "No laboratory results available"
-              }}
-            />
+    labResults:
+      summary.lab_findings || []
+  }}
+/>
             
             
 

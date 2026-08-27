@@ -417,3 +417,209 @@
     padding: 20px;
   }
 }
+/* =========================================
+   AI HEALTH SUMMARY
+========================================= */
+
+.health-summary {
+  margin-top: 25px;
+}
+
+.health-summary h2 {
+  margin-bottom: 25px;
+}
+
+
+/* =========================================
+   SUMMARY SECTIONS
+========================================= */
+
+.summary-section {
+  margin-top: 24px;
+}
+
+.summary-section h3 {
+  margin-bottom: 8px;
+  color: #173f6b;
+  font-size: 18px;
+}
+
+.summary-text {
+  margin: 0;
+  color: #718096;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   LAB RESULTS CONTAINER
+========================================= */
+
+.lab-results-container {
+  margin-top: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+
+/* =========================================
+   INDIVIDUAL LAB RESULT
+========================================= */
+
+.lab-result-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.5fr) minmax(130px, 1fr) auto;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 16px 18px;
+
+  border-bottom: 1px solid #edf2f7;
+}
+
+.lab-result-row:last-child {
+  border-bottom: none;
+}
+
+
+/* =========================================
+   TEST INFORMATION
+========================================= */
+
+.lab-test-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lab-test {
+  font-weight: 600;
+  color: #173f6b;
+}
+
+.lab-reference {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+
+/* =========================================
+   VALUE
+========================================= */
+
+.lab-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.lab-value {
+  font-weight: 600;
+  color: #334155;
+}
+
+.lab-unit {
+  color: #718096;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   FLAGS
+========================================= */
+
+.lab-flag {
+  display: inline-flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-width: 70px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* NORMAL */
+
+.lab-flag.normal {
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+
+
+/* HIGH */
+
+.lab-flag.high {
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+
+/* LOW */
+
+.lab-flag.low {
+  color: #d97706;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+
+
+/* =========================================
+   LEGEND
+========================================= */
+
+.lab-legend {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+  font-size: 13px;
+}
+
+.legend-title {
+  color: #64748b;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .lab-result-row {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .lab-value-container {
+    margin-top: 2px;
+  }
+
+  .lab-flag {
+    width: fit-content;
+  }
+
+  .lab-legend {
+    flex-wrap: wrap;
+  }
+}

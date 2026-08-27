@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom";
 
 function Home() {
-  return (
-    <div className="home-page">
+ return (
+  <div className="home-page">
 
-      {/* =========================
-          BRAND HEADER
-      ========================= */}
-      <header className="home-brand">
+    {/* =========================
+        BRAND HEADER
+    ========================= */}
+    <header className="home-brand">
 
-        <div className="home-logo">
-          🏥
-        </div>
+      <div className="home-logo">
+        <img
+          src="/mednexus-logo.png"
+          alt="MEDNEXUS"
+        />
+      </div>
 
-        <div>
-          <h1>MEDNEXUS</h1>
-          <p>Digital Patient Case Management System</p>
-        </div>
+      <div>
+        <h1>MEDNEXUS</h1>
+        <p>Digital Patient Case Management System</p>
+      </div>
 
-      </header>
-
+    </header>
 
       {/* =========================
           WELCOME SECTION

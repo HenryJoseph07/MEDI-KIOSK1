@@ -4983,3 +4983,684 @@ aside {
   border: 4px solid var(--mx-line-soft);
   border-top-color: var(--mx-pulse);
 }
+/* =========================================================
+   AI HEALTH SUMMARY - LAB RESULTS
+   ========================================================= */
+
+.lab-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.lab-result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 16px 18px;
+
+  background: #f8fbfd;
+
+  border: 1px solid #e1edf2;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lab-result-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #b9dce5;
+
+  box-shadow:
+    0 6px 18px rgba(20, 80, 100, 0.08);
+}
+
+.lab-result-info {
+  min-width: 0;
+}
+
+.lab-test-name {
+  color: #173b68;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  margin-bottom: 5px;
+}
+
+.lab-test-value {
+  color: #647b98;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   LAB STATUS BADGES
+   ========================================================= */
+
+.lab-flag {
+  flex-shrink: 0;
+
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+/* NORMAL */
+
+.lab-flag.normal {
+  background: #e7f7ed;
+  color: #21834b;
+
+  border: 1px solid #bde7cc;
+}
+
+/* HIGH */
+
+.lab-flag.high {
+  background: #fff0f0;
+  color: #d64545;
+
+  border: 1px solid #f3c1c1;
+}
+
+/* LOW */
+
+.lab-flag.low {
+  background: #fff7df;
+  color: #a66a00;
+
+  border: 1px solid #f1d48a;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .lab-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* =========================================================
+   AI HEALTH SUMMARY
+   ========================================================= */
+
+.health-summary-card {
+  margin-top: 25px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e1edf2;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(20, 80, 100, 0.07);
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.health-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e7eef2;
+}
+
+.health-summary-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eef7ff;
+
+  font-size: 23px;
+}
+
+.health-summary-header h2 {
+  margin: 0;
+
+  color: #173b68;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.health-summary-header p {
+  margin: 4px 0 0;
+
+  color: #718096;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   HEALTH SECTIONS
+   ========================= */
+
+.health-section {
+  margin-top: 26px;
+}
+
+.health-section h3 {
+  margin: 0 0 10px;
+
+  color: #173b68;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.health-section-content {
+  padding: 14px 16px;
+
+  background: #f8fbfd;
+
+  border: 1px solid #e6eef2;
+
+  border-radius: 12px;
+}
+
+.health-section-content p {
+  margin: 0;
+
+  color: #5f7894;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.empty-health-data {
+  color: #94a3b8 !important;
+  font-style: italic;
+}
+
+
+/* =========================
+   MEDICATIONS
+   ========================= */
+
+.medication-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.medication-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3edf1;
+
+  border-radius: 9px;
+
+  color: #526b85;
+
+  font-size: 14px;
+}
+
+.medication-item strong {
+  color: #173b68;
+}
+
+.medication-item span {
+  color: #718096;
+}
+
+
+/* =========================
+   LAB RESULTS HEADER
+   ========================= */
+
+.lab-results-section {
+  margin-top: 30px;
+}
+
+.lab-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+}
+
+.lab-results-heading h3 {
+  margin-bottom: 4px;
+}
+
+.lab-results-heading p {
+  margin: 0;
+
+  color: #8a9bae;
+
+  font-size: 13px;
+}
+
+.lab-result-count {
+  padding: 6px 11px;
+
+  background: #eef7fa;
+
+  color: #087f8c;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   LAB TABLE
+   ========================= */
+
+.lab-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid #dfeaf0;
+
+  border-radius: 14px;
+}
+
+.lab-results-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+
+  min-width: 700px;
+}
+
+.lab-results-table thead {
+  background: #f5f9fb;
+}
+
+.lab-results-table th {
+  padding: 14px 16px;
+
+  text-align: left;
+
+  color: #52708d;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  border-bottom: 1px solid #dfeaf0;
+}
+
+.lab-results-table td {
+  padding: 15px 16px;
+
+  border-bottom: 1px solid #edf2f5;
+
+  color: #5f7894;
+
+  font-size: 14px;
+}
+
+.lab-results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lab-results-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.lab-results-table tbody tr:hover {
+  background: #f8fbfd;
+}
+
+
+/* =========================
+   TEST NAME
+   ========================= */
+
+.lab-test-name {
+  color: #173b68;
+
+  font-weight: 800;
+}
+
+
+/* =========================
+   VALUE
+   ========================= */
+
+.lab-value {
+  color: #243b53;
+
+  font-weight: 700;
+}
+
+.lab-unit {
+  margin-left: 5px;
+
+  color: #8495a7;
+
+  font-size: 12px;
+}
+
+.lab-reference {
+  color: #718096;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   STATUS BADGES
+   ========================= */
+
+.lab-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.3px;
+}
+
+.lab-flag-icon {
+  font-size: 13px;
+}
+
+
+/* NORMAL */
+
+.lab-flag.normal {
+  background: #e9f8ef;
+
+  color: #18864b;
+
+  border: 1px solid #c9ecd8;
+}
+
+
+/* HIGH */
+
+.lab-flag.high {
+  background: #fff0f0;
+
+  color: #d64545;
+
+  border: 1px solid #f5cccc;
+}
+
+
+/* LOW */
+
+.lab-flag.low {
+  background: #fff7e6;
+
+  color: #c77b00;
+
+  border: 1px solid #f1dfb5;
+}
+
+
+/* UNKNOWN */
+
+.lab-flag:not(.normal):not(.high):not(.low) {
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  border: 1px solid #dce3ea;
+}
+
+
+/* =========================
+   EMPTY RESULTS
+   ========================= */
+
+.empty-lab-results {
+  padding: 25px;
+
+  text-align: center;
+
+  background: #f8fbfd;
+
+  border: 1px dashed #d7e4ea;
+
+  border-radius: 12px;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .health-summary-card {
+    padding: 20px;
+  }
+
+  .health-summary-header {
+    align-items: flex-start;
+  }
+
+  .health-summary-header h2 {
+    font-size: 20px;
+  }
+
+  .lab-results-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+}
+/* =========================================
+   AI HEALTH SUMMARY
+========================================= */
+
+.health-summary {
+  margin-top: 25px;
+}
+
+.health-summary h2 {
+  margin-bottom: 25px;
+}
+
+.summary-section {
+  margin-top: 24px;
+}
+
+.summary-section h3 {
+  margin-bottom: 8px;
+  color: #173f6d;
+}
+
+.summary-section p {
+  margin: 0;
+  color: #718096;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   LAB RESULTS GRID
+========================================= */
+
+.lab-section {
+  margin-top: 30px;
+}
+
+.lab-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 15px;
+}
+
+
+/* =========================================
+   INDIVIDUAL LAB CARD
+========================================= */
+
+.lab-result-card {
+  padding: 16px;
+  background: #f8fbfd;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.lab-result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(23, 63, 109, 0.08);
+}
+
+
+/* =========================================
+   TEST NAME + FLAG
+========================================= */
+
+.lab-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lab-result-header strong {
+  color: #173f6d;
+  font-size: 15px;
+}
+
+
+/* =========================================
+   FLAG BADGES
+========================================= */
+
+.lab-flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+
+/* NORMAL */
+
+.lab-flag.normal {
+  color: #087443;
+  background: #e6f7ef;
+  border: 1px solid #b7e8d0;
+}
+
+
+/* HIGH */
+
+.lab-flag.high {
+  color: #c53030;
+  background: #fff0f0;
+  border: 1px solid #ffcaca;
+}
+
+
+/* LOW */
+
+.lab-flag.low {
+  color: #b7791f;
+  background: #fff8e6;
+  border: 1px solid #f6df9b;
+}
+
+
+/* =========================================
+   LAB VALUE
+========================================= */
+
+.lab-value {
+  margin-top: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.lab-value .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #173f6d;
+}
+
+.lab-value .unit {
+  font-size: 12px;
+  color: #718096;
+}
+
+
+/* =========================================
+   REFERENCE RANGE
+========================================= */
+
+.reference-range {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #8a97a8;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+  .lab-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .lab-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
