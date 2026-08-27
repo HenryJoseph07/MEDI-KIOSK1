@@ -69,7 +69,7 @@ function DoctorRegistration() {
 
         {/* BRAND */}
         <div className="doctor-registration-brand">
-          MEDIKIOSK
+          MEDNEXUS
         </div>
 
         <p className="doctor-registration-subtitle">

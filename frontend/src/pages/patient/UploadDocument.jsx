@@ -55,7 +55,7 @@ navigate("/health-summary");
 
         {/* Brand */}
         <div className="upload-brand">
-          MEDIKIOSK
+          MEDNEXUS
         </div>
 
         <p className="upload-subtitle">

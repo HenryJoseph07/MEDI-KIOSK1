@@ -15,7 +15,7 @@ function Navbar({ userName }) {
     <header className="navbar">
 
       <div className="navbar-brand">
-        🏥 MEDIKIOSK
+        🏥 MEDNEXUS
       </div>
 
       <div className="navbar-right">

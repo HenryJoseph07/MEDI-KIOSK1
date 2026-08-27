@@ -6,7 +6,7 @@ function Sidebar({ type = "patient" }) {
     <aside className="sidebar">
 
       <div className="sidebar-logo">
-        MEDIKIOSK
+        MEDNEXUS
       </div>
 
       <nav className="sidebar-menu">

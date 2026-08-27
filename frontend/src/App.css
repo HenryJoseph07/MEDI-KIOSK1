@@ -2,7 +2,9 @@
    MEDIKIOSK - APP / PAGE STYLES
    Does NOT affect backend, API, authentication or routing.
    ========================================================= */
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
+   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -2804,4 +2806,2180 @@ a {
   .documents-grid .card {
     padding: 22px;
   }
+}/* =========================================================
+   MEDNEXUS - HOME PAGE
+   ========================================================= */
+
+.home-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(7, 150, 168, 0.10),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #f2fafb 0%,
+      #f8fcfd 50%,
+      #eef8fa 100%
+    );
+
+  color: #173b68;
+}
+
+
+/* =========================================================
+   BRAND HEADER
+   ========================================================= */
+
+.home-brand {
+  width: min(1050px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  padding: 38px 0 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  text-align: left;
+}
+
+.home-logo {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 42px;
+
+  background: #ffffff;
+
+  border: 1px solid #dcebef;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 25px rgba(20, 80, 100, 0.08);
+}
+
+.home-brand h1 {
+  margin: 0;
+
+  color: #173f70;
+
+  font-size: 42px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.home-brand p {
+  margin: 7px 0 0;
+
+  color: #607b9b;
+
+  font-size: 15px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.home-content {
+  width: min(1000px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  flex: 1;
+
+  padding: 20px 0 45px;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.home-intro {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.home-intro h2 {
+  margin: 0;
+
+  color: #123f70;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+}
+
+.home-intro p {
+  max-width: 650px;
+
+  margin: 9px auto 0;
+
+  color: #647f9f;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   ACCOUNT CARDS
+   ========================================================= */
+
+.account-cards {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   ACCOUNT CARD
+   ========================================================= */
+
+.account-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding: 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #dcebef;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 35px rgba(25, 75, 100, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #b9dfe5;
+
+  box-shadow:
+    0 18px 40px rgba(25, 75, 100, 0.13);
+}
+
+
+/* =========================================================
+   ACCOUNT IMAGE
+   ========================================================= */
+
+.account-image-container {
+  flex: 0 0 145px;
+
+  width: 145px;
+  height: 145px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f5fcfd,
+      #eaf7f9
+    );
+
+  border-radius: 18px;
+
+  border: 1px solid #e1f0f2;
+
+  overflow: hidden;
+}
+
+.account-image {
+  width: 125px;
+  height: 125px;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   ACCOUNT CONTENT
+   ========================================================= */
+
+.account-card-content {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.account-label {
+  display: inline-block;
+
+  margin-bottom: 6px;
+
+  color: #0796a8;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.account-card h2 {
+  margin: 0 0 8px;
+
+  color: #173f70;
+
+  font-size: 27px;
+
+  font-weight: 800;
+}
+
+.account-card > .account-card-content > p {
+  margin: 0 0 18px;
+
+  color: #667f9d;
+
+  font-size: 14px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.home-login-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 45px;
+
+  padding: 0 22px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0796a8,
+      #087f8c
+    );
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 7px 16px rgba(7, 150, 168, 0.20);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-login-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(7, 150, 168, 0.27);
+}
+
+
+/* =========================================================
+   REGISTER LINK
+   ========================================================= */
+
+.register-link {
+  margin-top: 12px !important;
+
+  margin-bottom: 0 !important;
+
+  color: #7186a0 !important;
+
+  font-size: 13px !important;
+}
+
+.register-link a {
+  color: #087fbe;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.home-footer {
+  width: 100%;
+
+  padding: 18px 20px 24px;
+
+  text-align: center;
+
+  color: #7186a0;
+
+  font-size: 12px;
+
+  border-top: 1px solid #dcebef;
+
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.home-footer span {
+  margin: 0 8px;
+
+  color: #0796a8;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .account-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .account-card {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .home-brand {
+    padding-top: 25px;
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .home-brand h1 {
+    font-size: 34px;
+  }
+
+  .home-brand p {
+    font-size: 13px;
+  }
+
+  .home-intro h2 {
+    font-size: 27px;
+  }
+
+  .account-card {
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 25px 20px;
+  }
+
+  .account-image-container {
+    flex-basis: auto;
+  }
+
+  .account-card-content {
+    width: 100%;
+  }
+
+}
+/* =========================================================
+   MEDNEXUS — MODERN LANDING PAGE
+   ========================================================= */
+
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(14, 165, 180, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 25%,
+      rgba(37, 99, 235, 0.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7fcfd 0%,
+      #eef8fa 48%,
+      #f8fbff 100%
+    );
+
+  color: #123b68;
+}
+
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+   ========================================================= */
+
+.home-page::before {
+  content: "";
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: -220px;
+  left: -180px;
+
+  border-radius: 50%;
+
+  background: rgba(11, 155, 173, 0.08);
+
+  pointer-events: none;
+}
+
+.home-page::after {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  bottom: -280px;
+
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.06);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   PROJECT BRAND
+   ========================================================= */
+
+.project-title {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, calc(100% - 48px));
+
+  margin: 0 auto;
+  padding: 38px 0 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  text-align: left;
+}
+
+.project-title h2 {
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #123f70;
+
+  font-size: 36px;
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+}
+
+.project-title h2::first-letter {
+  font-size: 32px;
+}
+
+.project-title p {
+  margin: 0;
+  padding-left: 18px;
+
+  border-left: 1px solid #c9dfe8;
+
+  color: #66819f;
+
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.home-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1050px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  padding: 70px 0 80px;
+
+  text-align: center;
+}
+
+.home-content > h1 {
+  margin: 0;
+
+  color: #103f70;
+
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
+}
+
+.home-description {
+  max-width: 720px;
+
+  margin: 18px auto 48px;
+
+  color: #64809e;
+
+  font-size: 17px;
+  line-height: 1.7;
+
+  font-weight: 450;
+}
+
+
+/* =========================================================
+   ACCOUNT CARDS
+   ========================================================= */
+
+.account-cards {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   ACCOUNT CARD
+   ========================================================= */
+
+.account-card {
+  position: relative;
+
+  min-height: 350px;
+
+  padding: 34px 32px 30px;
+
+  display: grid;
+
+  grid-template-columns: 145px 1fr;
+
+  grid-template-rows: auto auto 1fr auto;
+
+  column-gap: 26px;
+
+  align-items: center;
+
+  text-align: left;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  border: 1px solid rgba(196, 220, 230, 0.9);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 12px 35px rgba(26, 78, 105, 0.08),
+    0 2px 8px rgba(26, 78, 105, 0.04);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #9bd5df;
+
+  box-shadow:
+    0 22px 50px rgba(20, 90, 115, 0.14),
+    0 5px 12px rgba(20, 90, 115, 0.06);
+}
+
+
+/* =========================================================
+   CARD TOP ACCENT
+   ========================================================= */
+
+.account-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 32px;
+  right: 32px;
+
+  height: 4px;
+
+  border-radius: 0 0 8px 8px;
+
+  background: linear-gradient(
+    90deg,
+    #0796a8,
+    #24b7c5
+  );
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.account-image-container {
+  grid-column: 1;
+  grid-row: 1 / 5;
+
+  width: 145px;
+  height: 145px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f2fbfc,
+      #e5f5f8
+    );
+
+  border: 1px solid #cce8ed;
+
+  border-radius: 22px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 8px 20px rgba(18, 101, 120, 0.08);
+
+  transition: transform 0.25s ease;
+}
+
+.account-card:hover .account-image-container {
+  transform: scale(1.04);
+}
+
+.account-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 14px;
+}
+
+
+/* =========================================================
+   CARD LABEL
+   ========================================================= */
+
+.account-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: 27px;
+  right: 28px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #20b6a6;
+
+  box-shadow:
+    0 0 0 5px rgba(32, 182, 166, 0.10);
+}
+
+
+/* =========================================================
+   CARD HEADING
+   ========================================================= */
+
+.account-card h2 {
+  grid-column: 2;
+
+  margin: 0 0 5px;
+
+  color: #123f70;
+
+  font-size: 30px;
+  font-weight: 850;
+
+  letter-spacing: -0.8px;
+}
+
+.account-card p:not(.register-link) {
+  grid-column: 2;
+
+  margin: 0 0 18px;
+
+  color: #66819f;
+
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.home-login-btn {
+  grid-column: 2;
+
+  display: inline-flex;
+
+  width: fit-content;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+  min-height: 48px;
+
+  padding: 0 24px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #079caf,
+    #078394
+  );
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  box-shadow:
+    0 8px 18px rgba(7, 145, 163, 0.20);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-login-btn:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(
+    135deg,
+    #07899b,
+    #066f80
+  );
+
+  box-shadow:
+    0 12px 24px rgba(7, 145, 163, 0.28);
+}
+
+
+/* =========================================================
+   REGISTER LINK
+   ========================================================= */
+
+.register-link {
+  grid-column: 2;
+
+  margin: 10px 0 0;
+
+  color: #7a91aa;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+.register-link a {
+  color: #0787a1;
+
+  font-weight: 750;
+
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.home-footer {
+  position: relative;
+  z-index: 2;
+
+  margin-top: auto;
+
+  width: 100%;
+
+  padding: 18px 20px;
+
+  text-align: center;
+
+  color: #7088a3;
+
+  font-size: 12px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border-top: 1px solid rgba(207, 225, 232, 0.8);
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .project-title {
+    padding-top: 28px;
+  }
+
+  .project-title h2 {
+    font-size: 30px;
+  }
+
+  .project-title p {
+    font-size: 13px;
+  }
+
+  .home-content {
+    padding-top: 55px;
+  }
+
+  .account-cards {
+    grid-template-columns: 1fr;
+
+    max-width: 620px;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .project-title {
+    width: calc(100% - 30px);
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    text-align: center;
+  }
+
+  .project-title h2 {
+    font-size: 29px;
+  }
+
+  .project-title p {
+    padding-left: 0;
+
+    border-left: none;
+
+    font-size: 12px;
+  }
+
+  .home-content {
+    width: calc(100% - 28px);
+
+    padding: 45px 0 50px;
+  }
+
+  .home-content > h1 {
+    font-size: 36px;
+
+    letter-spacing: -1.2px;
+  }
+
+  .home-description {
+    margin-bottom: 32px;
+
+    font-size: 14px;
+  }
+
+  .account-card {
+    min-height: auto;
+
+    padding: 30px 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .account-image-container {
+    width: 125px;
+    height: 125px;
+
+    margin-bottom: 20px;
+  }
+
+  .account-card h2 {
+    font-size: 27px;
+
+    margin-bottom: 8px;
+  }
+
+  .account-card p:not(.register-link) {
+    max-width: 300px;
+
+    margin-bottom: 18px;
+  }
+
+  .home-login-btn {
+    width: 180px;
+  }
+
+  .register-link {
+    margin-top: 12px;
+  }
+}
+/* =========================================================
+   MEDNEXUS — HOME PAGE
+   Clinical chart aesthetic: mono data type, folder-tab cards,
+   heartbeat trace signature. Drop-in replacement for your
+   existing "MEDNEXUS - HOME PAGE" block. Delete the second
+   "MODERN LANDING PAGE" block below it — it targets markup
+   (.project-title) your screenshot isn't using, and will
+   fight with this one.
+   ========================================================= */
+
+
+
+.home-page {
+  --mx-ink: #12233f;
+  --mx-ink-soft: #55698a;
+  --mx-paper: #f3f6f4;
+  --mx-paper-deep: #e7eee8;
+  --mx-line: rgba(18, 37, 68, 0.09);
+  --mx-white: #ffffff;
+  --mx-pulse: #d6543f;
+  --mx-doctor: #2454a1;
+  --mx-doctor-tint: #eaf1fb;
+  --mx-patient: #a83b46;
+  --mx-patient-tint: #fbecec;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  color: var(--mx-ink);
+
+  background:
+    repeating-linear-gradient(
+      to right,
+      var(--mx-line) 0 1px,
+      transparent 1px 48px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--mx-line) 0 1px,
+      transparent 1px 48px
+    ),
+    radial-gradient(circle at 88% 8%, rgba(214, 84, 63, 0.07), transparent 32%),
+    var(--mx-paper);
+}
+
+/* Fade the grid out toward the edges so it reads as texture, not a table */
+.home-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 30%,
+    transparent 0%,
+    var(--mx-paper) 78%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   BRAND HEADER
+   ========================================================= */
+
+.home-brand {
+  position: relative;
+  z-index: 1;
+
+  width: min(1050px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 44px 0 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  text-align: center;
+}
+
+.home-logo {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-radius: 14px;
+
+  box-shadow: 0 10px 26px rgba(18, 37, 68, 0.10);
+}
+
+.home-brand h1 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: -0.5px;
+  color: var(--mx-ink);
+}
+
+.home-brand p {
+  margin: 0;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mx-ink-soft);
+}
+
+/* Heartbeat trace strip — the signature element */
+.home-brand::after {
+  content: "";
+  display: block;
+  width: min(560px, 90%);
+  height: 22px;
+  margin-top: 18px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='24' viewBox='0 0 220 24'%3E%3Cpath d='M0 12 H70 L80 3 L92 21 L104 5 L112 12 H220' fill='none' stroke='%23d6543f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 220px 24px;
+
+  opacity: 0.75;
+  animation: mx-pulse-scroll 5.5s linear infinite;
+}
+
+@keyframes mx-pulse-scroll {
+  from { background-position-x: 0; }
+  to   { background-position-x: -220px; }
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.home-content {
+  position: relative;
+  z-index: 1;
+
+  width: min(1000px, calc(100% - 40px));
+  margin: 0 auto;
+
+  flex: 1;
+  padding: 56px 0 60px;
+}
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.home-intro {
+  text-align: center;
+  margin-bottom: 46px;
+}
+
+.home-intro::before {
+  content: "PATIENT RECORDS · CLINICAL NOTES · SECURE ACCESS";
+  display: inline-block;
+  margin-bottom: 14px;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+
+  color: var(--mx-pulse);
+}
+
+.home-intro h2 {
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -0.8px;
+  color: var(--mx-ink);
+}
+
+.home-intro p {
+  max-width: 620px;
+  margin: 12px auto 0;
+
+  color: var(--mx-ink-soft);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ACCOUNT CARDS — styled as patient-chart folders
+   ========================================================= */
+
+.account-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.account-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  padding: 34px 30px 30px;
+  margin-top: 22px; /* room for the tab */
+
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-radius: 4px 16px 16px 16px; /* squared top-left, like a folder */
+
+  box-shadow: 0 14px 34px rgba(18, 37, 68, 0.08);
+
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(18, 37, 68, 0.13);
+}
+
+/* Folder tab, built from the existing eyebrow label */
+.account-label {
+  position: absolute;
+  top: -19px;
+  left: -1px;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 14px 8px;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+
+  border-radius: 4px 10px 0 0;
+  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.02) inset;
+}
+
+/* Doctor = first card, cobalt tab */
+.account-card:nth-of-type(1) .account-label,
+.account-cards > :nth-child(1) .account-label {
+  background: var(--mx-doctor);
+  color: var(--mx-white);
+}
+
+.account-card:nth-of-type(1),
+.account-cards > :nth-child(1) {
+  border-top: 3px solid var(--mx-doctor);
+}
+
+/* Patient = second card, maroon tab */
+.account-card:nth-of-type(2) .account-label,
+.account-cards > :nth-child(2) .account-label {
+  background: var(--mx-patient);
+  color: var(--mx-white);
+}
+
+.account-card:nth-of-type(2),
+.account-cards > :nth-child(2) {
+  border-top: 3px solid var(--mx-patient);
+}
+
+/* =========================================================
+   ACCOUNT IMAGE
+   ========================================================= */
+
+.account-image-container {
+  flex: 0 0 128px;
+  width: 128px;
+  height: 128px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--mx-paper-deep);
+  border: 1px solid var(--mx-line);
+  border-radius: 12px;
+
+  transition: transform 0.22s ease;
+}
+
+.account-card:hover .account-image-container {
+  transform: rotate(-2deg) scale(1.03);
+}
+
+.account-image {
+  width: 108px;
+  height: 108px;
+  object-fit: contain;
+}
+
+/* =========================================================
+   ACCOUNT CONTENT
+   ========================================================= */
+
+.account-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-card h2 {
+  margin: 4px 0 8px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: var(--mx-ink);
+}
+
+.account-card > .account-card-content > p {
+  margin: 0 0 20px;
+
+  color: var(--mx-ink-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   LOGIN BUTTON — stamp/pill treatment
+   ========================================================= */
+
+.home-login-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 46px;
+  padding: 0 22px;
+
+  border-radius: 8px;
+  background: var(--mx-ink);
+  color: var(--mx-white);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow: 0 8px 18px rgba(18, 37, 68, 0.20);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.home-login-btn::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mx-pulse);
+}
+
+.account-cards > :nth-child(1) .home-login-btn:hover {
+  background: var(--mx-doctor);
+}
+
+.account-cards > :nth-child(2) .home-login-btn:hover {
+  background: var(--mx-patient);
+}
+
+.home-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(18, 37, 68, 0.28);
+}
+
+/* =========================================================
+   REGISTER LINK
+   ========================================================= */
+
+.register-link {
+  margin: 13px 0 0 !important;
+  color: var(--mx-ink-soft) !important;
+  font-size: 12.5px !important;
+}
+
+.register-link a {
+  color: var(--mx-pulse);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.register-link a:hover {
+  border-color: var(--mx-pulse);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.home-footer {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  padding: 18px 20px 26px;
+  text-align: center;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--mx-ink-soft);
+
+  border-top: 1px solid var(--mx-line);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.home-footer span {
+  margin: 0 8px;
+  color: var(--mx-pulse);
+}
+
+/* =========================================================
+   MOTION SAFETY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-brand::after {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .account-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .account-card {
+    max-width: 640px;
+    margin: 22px auto 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-brand {
+    padding-top: 30px;
+  }
+
+  .home-brand h1 {
+    font-size: 27px;
+  }
+
+  .home-intro h2 {
+    font-size: 26px;
+  }
+
+  .account-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 34px 22px 26px;
+  }
+
+  .account-image-container {
+    flex-basis: auto;
+  }
+
+  .account-card-content {
+    width: 100%;
+  }
+
+  .account-label {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -16px;
+  }
+}
+/* =========================================================
+   MEDNEXUS — APP-WIDE THEME
+   Extends the home page's clinical-chart language (mono
+   labels, navy ink, coral "pulse" accent, folder-tab cards,
+   faint grid paper) across auth, dashboard, upload, and
+   summary pages. Paste this AFTER your home page CSS —
+   later rules win the cascade, so this recolors/retypes the
+   rest of the app without you having to hunt down and delete
+   every old teal/Inter rule by hand.
+   Structure (paddings, widths, grid columns) is left as-is;
+   only color, type, texture, and a few card/badge shapes
+   change, so no JSX/markup changes are needed.
+   ========================================================= */
+
+
+:root {
+  --mx-ink: #12233f;
+  --mx-ink-soft: #55698a;
+  --mx-ink-faint: #8b9db6;
+
+  --mx-paper: #f3f6f4;
+  --mx-paper-deep: #e7eee8;
+  --mx-white: #ffffff;
+
+  --mx-line: rgba(18, 37, 68, 0.10);
+  --mx-line-soft: rgba(18, 37, 68, 0.06);
+
+  --mx-pulse: #d6543f;
+  --mx-pulse-tint: #fbeae6;
+
+  --mx-doctor: #2454a1;
+  --mx-doctor-tint: #eaf1fb;
+
+  --mx-patient: #a83b46;
+  --mx-patient-tint: #fbecec;
+
+  --mx-success: #1f7a5c;
+  --mx-success-tint: #e6f5ef;
+
+  --mx-warning: #a5720b;
+  --mx-warning-tint: #fbf1dd;
+
+  --mx-danger: #b23b3b;
+  --mx-danger-tint: #fbecec;
+
+  --mx-shadow: 0 10px 28px rgba(18, 37, 68, 0.08);
+  --mx-shadow-hover: 0 16px 36px rgba(18, 37, 68, 0.12);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--mx-paper);
+  color: var(--mx-ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.4px;
+}
+
+/* =========================================================
+   SHARED GRID-PAPER BACKGROUND
+   ========================================================= */
+
+.dashboard-page,
+.medikiosk-page,
+.upload-page,
+.doctor-registration,
+.doctor-register,
+.auth-page {
+  background:
+    repeating-linear-gradient(to right, var(--mx-line-soft) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(to bottom, var(--mx-line-soft) 0 1px, transparent 1px 56px),
+    var(--mx-paper);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar,
+.doctor-dashboard header {
+  background: var(--mx-white);
+  border-bottom: 1px solid var(--mx-line);
+  box-shadow: 0 2px 14px rgba(18, 37, 68, 0.05);
+}
+
+.navbar-brand,
+.doctor-dashboard header h1,
+.doctor-dashboard header .logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mx-ink);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mx-pulse);
+  box-shadow: 0 0 0 4px var(--mx-pulse-tint);
+}
+
+.welcome-user,
+.doctor-dashboard header span,
+.doctor-dashboard header p {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--mx-ink-soft);
+  text-transform: uppercase;
+}
+
+.logout-btn,
+.doctor-dashboard .logout,
+.doctor-dashboard button.logout {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--mx-ink-soft);
+}
+
+.logout-btn:hover,
+.doctor-dashboard .logout:hover,
+.doctor-dashboard button.logout:hover {
+  background: var(--mx-danger-tint);
+  color: var(--mx-danger);
+}
+
+.profile-icon {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  border: 1px solid var(--mx-line);
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar,
+aside {
+  background: var(--mx-white);
+  border-right: 1px solid var(--mx-line);
+}
+
+.sidebar-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mx-ink);
+  border-bottom: 1px solid var(--mx-line);
+}
+
+.sidebar-menu a {
+  font-family: var(--font-body);
+  color: var(--mx-ink-soft);
+  border-left: 3px solid transparent;
+  border-radius: 0 10px 10px 0;
+}
+
+.sidebar-menu a:hover {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  border-left-color: var(--mx-doctor);
+  transform: none;
+}
+
+.sidebar-menu a.active {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  font-weight: 700;
+  border-left-color: var(--mx-pulse);
+  box-shadow: none;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.primary-btn,
+.primary-button,
+.doctor-dashboard button,
+.patient-card button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  background: var(--mx-ink);
+  color: var(--mx-white) !important;
+
+  border: none;
+  box-shadow: 0 6px 16px rgba(18, 37, 68, 0.18);
+}
+
+.primary-btn::before,
+.primary-button::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mx-pulse);
+  flex-shrink: 0;
+}
+
+.primary-btn:hover,
+.primary-button:hover,
+.doctor-dashboard button:hover,
+.patient-card button:hover {
+  background: var(--mx-doctor);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(36, 84, 161, 0.24);
+}
+
+.secondary-button,
+.back-btn {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  background: var(--mx-white);
+  color: var(--mx-ink);
+  border: 1px solid var(--mx-line);
+}
+
+.secondary-button:hover,
+.back-btn:hover {
+  border-color: var(--mx-pulse);
+  color: var(--mx-pulse);
+  background: var(--mx-pulse-tint);
+}
+
+/* =========================================================
+   AUTH PAGES (doctor + patient registration/login)
+   ========================================================= */
+
+.doctor-registration > div,
+.doctor-register > div,
+.auth-page > div {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-radius: 4px 20px 20px 20px; /* squared corner = folder edge */
+  box-shadow: var(--mx-shadow);
+}
+
+.doctor-registration h1:first-child,
+.doctor-register h1:first-child,
+.auth-page h1:first-child {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mx-ink);
+}
+
+.doctor-registration h2,
+.doctor-register h2,
+.auth-page h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--mx-ink);
+}
+
+.doctor-registration label,
+.doctor-register label,
+.auth-page label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--mx-ink-soft);
+}
+
+.doctor-registration input,
+.doctor-register input,
+.auth-page input {
+  border: 1px solid var(--mx-line);
+  background: var(--mx-paper);
+  color: var(--mx-ink);
+}
+
+.doctor-registration input:focus,
+.doctor-register input:focus,
+.auth-page input:focus {
+  border-color: var(--mx-pulse);
+  box-shadow: 0 0 0 3px var(--mx-pulse-tint);
+  background: var(--mx-white);
+}
+
+.doctor-registration button,
+.doctor-register button,
+.auth-page button {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: var(--mx-ink);
+}
+
+.doctor-registration button:hover,
+.doctor-register button:hover,
+.auth-page button:hover {
+  background: var(--mx-doctor);
+  box-shadow: 0 10px 22px rgba(36, 84, 161, 0.24);
+}
+
+/* =========================================================
+   DASHBOARD PAGE HEADER
+   ========================================================= */
+
+.page-header,
+.doctor-dashboard main > h1,
+.upload-header,
+.summary-header {
+  position: relative;
+}
+
+.page-header h1,
+.doctor-dashboard main > h1,
+.upload-header h1,
+.summary-header h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mx-ink);
+}
+
+.page-header p,
+.doctor-dashboard main > p,
+.upload-header p,
+.summary-header p {
+  color: var(--mx-ink-soft);
+}
+
+/* =========================================================
+   STATS GRID
+   ========================================================= */
+
+.stat-card {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-top: 3px solid var(--mx-doctor);
+}
+
+.stats-grid > .stat-card:nth-child(2),
+.stats-grid > *:nth-child(2) .stat-card {
+  border-top-color: var(--mx-pulse);
+}
+
+.stats-grid > .stat-card:nth-child(3),
+.stats-grid > *:nth-child(3) .stat-card {
+  border-top-color: var(--mx-success);
+}
+
+.stat-card::after {
+  display: none; /* replace the soft teal blob with a flat folder edge */
+}
+
+.stat-card p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--mx-ink-soft);
+}
+
+.stat-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--mx-ink);
+}
+
+/* =========================================================
+   PATIENT GRID / CARD
+   ========================================================= */
+
+.documents-grid .card,
+.patient-card {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-top: 3px solid var(--mx-doctor);
+  border-radius: 4px 16px 16px 16px;
+}
+
+.documents-grid .card h3,
+.patient-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--mx-ink);
+}
+
+.documents-grid .card p:first-of-type,
+.patient-card p:first-of-type {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mx-doctor) !important;
+}
+
+.documents-grid .card p,
+.patient-card p {
+  color: var(--mx-ink-soft);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.doctor-dashboard th {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-ink);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.doctor-dashboard td {
+  color: var(--mx-ink);
+  border-top: 1px solid var(--mx-line-soft);
+}
+
+.doctor-dashboard tr:hover td {
+  background: var(--mx-pulse-tint);
+}
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status,
+.status-completed,
+.completed,
+.status-pending,
+.pending,
+.status-failed,
+.failed {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.status::before,
+.status-completed::before,
+.completed::before,
+.status-pending::before,
+.pending::before,
+.status-failed::before,
+.failed::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: currentColor;
+}
+
+.status,
+.status-completed,
+.completed {
+  background: var(--mx-success-tint);
+  color: var(--mx-success);
+}
+
+.status-pending,
+.pending {
+  background: var(--mx-warning-tint);
+  color: var(--mx-warning);
+}
+
+.status-failed,
+.failed {
+  background: var(--mx-danger-tint);
+  color: var(--mx-danger);
+}
+
+/* =========================================================
+   UPLOAD PAGE
+   ========================================================= */
+
+.upload-card {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-radius: 4px 20px 20px 20px;
+  box-shadow: var(--mx-shadow);
+}
+
+.upload-form-group label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--mx-ink-soft);
+}
+
+.upload-form-group select,
+.upload-form-group input[type="text"] {
+  border: 1px solid var(--mx-line);
+  background: var(--mx-paper);
+  color: var(--mx-ink);
+}
+
+.upload-form-group select:focus,
+.upload-form-group input[type="text"]:focus {
+  border-color: var(--mx-pulse);
+  box-shadow: 0 0 0 3px var(--mx-pulse-tint);
+  background: var(--mx-white);
+}
+
+.upload-box {
+  border: 2px dashed var(--mx-line);
+  background: var(--mx-paper);
+}
+
+.upload-box:hover {
+  border-color: var(--mx-pulse);
+  background: var(--mx-pulse-tint);
+}
+
+.upload-icon {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+}
+
+.upload-box h3 {
+  font-family: var(--font-display);
+  color: var(--mx-ink);
+}
+
+.upload-box input[type="file"]::file-selector-button {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  font-weight: 700;
+}
+
+.upload-status,
+.upload-error,
+.upload-success {
+  border-radius: 8px;
+  border-left: 3px solid;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+
+.upload-status {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  border-left-color: var(--mx-doctor);
+}
+
+.upload-error {
+  background: var(--mx-danger-tint);
+  color: var(--mx-danger);
+  border-left-color: var(--mx-danger);
+}
+
+.upload-success {
+  background: var(--mx-success-tint);
+  color: var(--mx-success);
+  border-left-color: var(--mx-success);
+}
+
+/* =========================================================
+   HEALTH SUMMARY PAGE
+   ========================================================= */
+
+.summary-card {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line);
+  border-radius: 4px 20px 20px 20px;
+}
+
+.main-summary-card {
+  border-top: 3px solid var(--mx-pulse);
+}
+
+.card-title-row h2 {
+  font-family: var(--font-display);
+  color: var(--mx-ink);
+}
+
+.card-icon {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+  border-radius: 10px;
+}
+
+.summary-text {
+  background: var(--mx-paper);
+  border: 1px solid var(--mx-line-soft);
+  color: var(--mx-ink);
+}
+
+.medical-list li {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line-soft);
+  border-left: 3px solid var(--mx-doctor);
+  border-radius: 4px 10px 10px 4px;
+  color: var(--mx-ink);
+}
+
+.medical-list li::before {
+  content: none; /* replaced by the left accent bar above */
+}
+
+.lab-item {
+  background: var(--mx-white);
+  border: 1px solid var(--mx-line-soft);
+  border-left: 3px solid var(--mx-pulse);
+  border-radius: 4px 10px 10px 4px;
+  color: var(--mx-ink);
+}
+
+.empty-summary,
+.empty-state {
+  background: var(--mx-white);
+  border: 1px dashed var(--mx-line);
+}
+
+.empty-summary-icon {
+  background: var(--mx-doctor-tint);
+  color: var(--mx-doctor);
+}
+
+.loading-spinner {
+  border: 4px solid var(--mx-line-soft);
+  border-top-color: var(--mx-pulse);
 }

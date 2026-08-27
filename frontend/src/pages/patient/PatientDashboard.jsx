@@ -112,7 +112,7 @@ function PatientDashboard() {
   // DASHBOARD
   // ===============================
   return (
-    <div className="medikiosk-app">
+    <div className="mediNexus-app">
 
       {/* =================================
           NAVBAR
@@ -120,7 +120,7 @@ function PatientDashboard() {
       <header className="navbar">
 
         <div className="logo">
-          MediKiosk
+          MedNexus
         </div>
 
         <div className="user-info">

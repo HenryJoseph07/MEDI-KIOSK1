@@ -4,27 +4,47 @@ function Home() {
   return (
     <div className="home-page">
 
-      {/* Main Project Title */}
-      <div className="project-title">
-        <h2>🏥 MEDIKIOSK</h2>
-        <p>Digital Patient Case Management System</p>
-      </div>
+      {/* =========================
+          BRAND HEADER
+      ========================= */}
+      <header className="home-brand">
 
-      {/* Main Content */}
+        <div className="home-logo">
+          🏥
+        </div>
+
+        <div>
+          <h1>MEDNEXUS</h1>
+          <p>Digital Patient Case Management System</p>
+        </div>
+
+      </header>
+
+
+      {/* =========================
+          WELCOME SECTION
+      ========================= */}
       <main className="home-content">
 
-        <h1>Welcome to MEDIKIOSK</h1>
+        <section className="home-intro">
 
-        <p className="home-description">
-          Securely manage patient records, medical documents and clinical
-          information.
-        </p>
+          <h2>Welcome to MEDNEXUS</h2>
 
-        {/* Patient + Doctor Cards */}
-        <div className="account-cards">
+          <p>
+            Securely manage patient records, medical documents,
+            and clinical information in one place.
+          </p>
 
-          {/* Doctor Card */}
-          <div className="account-card">
+        </section>
+
+
+        {/* =========================
+            USER TYPE SELECTION
+        ========================= */}
+        <section className="account-cards">
+
+          {/* DOCTOR */}
+          <article className="account-card">
 
             <div className="account-image-container">
               <img
@@ -34,32 +54,40 @@ function Home() {
               />
             </div>
 
-            <h2>Doctor</h2>
+            <div className="account-card-content">
 
-            <p>
-              Access patient cases, review medical documents and manage
-              clinical information.
-            </p>
+              <span className="account-label">
+                For Healthcare Professionals
+              </span>
 
-            <Link
-              to="/doctor/login"
-              className="home-login-btn"
-            >
-              Doctor Login
-            </Link>
+              <h2>Doctor</h2>
 
-            <p className="register-link">
-              New doctor?{" "}
-              <Link to="/doctor/register">
-                Register here
+              <p>
+                Review patient cases, access medical documents,
+                and manage clinical information.
+              </p>
+
+              <Link
+                to="/doctor/login"
+                className="home-login-btn"
+              >
+                Doctor Login
               </Link>
-            </p>
 
-          </div>
+              <p className="register-link">
+                New doctor?{" "}
+                <Link to="/doctor/register">
+                  Register here
+                </Link>
+              </p>
+
+            </div>
+
+          </article>
 
 
-          {/* Patient Card */}
-          <div className="account-card">
+          {/* PATIENT */}
+          <article className="account-card">
 
             <div className="account-image-container">
               <img
@@ -69,37 +97,49 @@ function Home() {
               />
             </div>
 
-            <h2>Patient</h2>
+            <div className="account-card-content">
 
-            <p>
-              Access your medical records, upload documents and view your
-              health summary.
-            </p>
+              <span className="account-label">
+                For Patients
+              </span>
 
-            <Link
-              to="/patient/login"
-              className="home-login-btn"
-            >
-              Patient Login
-            </Link>
+              <h2>Patient</h2>
 
-            <p className="register-link">
-              New patient?{" "}
-              <Link to="/patient/register">
-                Register here
+              <p>
+                Access your medical records, upload documents,
+                and view your AI-powered health summary.
+              </p>
+
+              <Link
+                to="/patient/login"
+                className="home-login-btn"
+              >
+                Patient Login
               </Link>
-            </p>
 
-          </div>
+              <p className="register-link">
+                New patient?{" "}
+                <Link to="/patient/register">
+                  Register here
+                </Link>
+              </p>
 
-        </div>
+            </div>
+
+          </article>
+
+        </section>
 
       </main>
 
 
-      {/* Footer */}
+      {/* =========================
+          FOOTER
+      ========================= */}
       <footer className="home-footer">
-        © 2026 MEDIKIOSK | Patient Case Management System
+        © 2026 MEDNEXUS
+        <span>•</span>
+        Digital Patient Case Management System
       </footer>
 
     </div>

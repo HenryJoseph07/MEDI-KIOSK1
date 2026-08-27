@@ -67,7 +67,7 @@ function PatientRegistration() {
     <div className="auth-card">
 
       <div className="auth-header">
-        <h1>MEDIKIOSK</h1>
+        <h1>MEDNEXUS</h1>
         <p>Digital Patient Case Management System</p>
       </div>
 
